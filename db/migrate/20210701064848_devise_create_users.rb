@@ -42,7 +42,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.boolean :is_deleted,       null: false, default: false
       t.boolean :admin,            null: false, default: false
 
-      t.timestamps null: false
+      t.timestamps                 null: false
     end
 
     add_index :users, :email,                unique: true
