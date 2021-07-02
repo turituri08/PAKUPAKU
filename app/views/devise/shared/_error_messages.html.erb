@@ -8,7 +8,10 @@
     </h2>
     <ul>
       <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="fade show alert alert-danger d-flex">
+          <li><%= message %></li>
+          <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+        </div>
       <% end %>
     </ul>
   </div>

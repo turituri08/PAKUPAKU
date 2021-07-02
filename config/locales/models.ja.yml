@@ -2,6 +2,13 @@ ja:
   activerecord:
     attributes:
       user:
+        name: 名前
+        user_name: ユーザー名
+        sex: 性別
+        birthday: 生年月日
+        profile_image_id: プロフィール画像
+        child_gender: お子様の性別
+        child_age: お子様の年齢
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
