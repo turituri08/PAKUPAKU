@@ -5,15 +5,17 @@
       <div class="col-md-9 offset-4 Introduction text-center px-0">
 
         <div class="top-heading">
-          <h3 id="arctext" class="arctext mb-5 mt-5 pt-5" >| Make and enjoy |</h4>
+          <h3 id="arctext" class="arctext mb-5 mt-4 pt-5" >| Make and enjoy |</h4>
           <p class="display-2 pt-2 pb-2">PakuPaku</p>
-          <h3 id="arctext-2" class="arctext mt-5 pb-5">Baby Food</h4>
+          <h3 id="arctext-2" class="arctext mt-5 pb-3">Baby Food</h4>
         </div>
+        <h2 class="mt-5 font-weight-bold">離乳食や幼児食って</h2>
+        <h2 class="font-weight-bold">いつから何を食べさせる？？</h2>
         <div class="btngroup mt-5">
           <a href="/users/sign_in" class="btn btn-info font-weight-bold ml-4">ログイン</a>
           <a href="/users/sign_up" class="btn btn-info font-weight-bold ml-3">アカウント作成</a>
         </div>
-        
+
       <% if user_signed_in? %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <% end %>
