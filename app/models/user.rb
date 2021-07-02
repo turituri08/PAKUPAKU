@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :profile_image
-  
+
   validates :name,         presence: true
   validates :sex,          presence: true
   validates :birthday,     presence: true
@@ -15,5 +15,6 @@ class User < ApplicationRecord
                            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
   validates :child_gender, presence: true
   validates :child_age,    presence: true
-
+  
+  has_many  :contents,     dependent: :destroy
 end

@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>画像投稿フォーム</h1>
+  <%= form_with model: @contents, local:true do |f| %>
+
+    <h4>画像</h4>
+    <div class="form-group row mt-5">
+      <label class="col-md-4 col-form-label text-md-right"><%= f.label :画像 %></label>
+      <div class="col-md-6">
+        <%= f.attachment_field :images, multiple: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <h4>本文</h4>
+    <div class="form-group row mt-5">
+      <label class="col-md-4 col-form-label text-md-right"><%= f.label :本文 %></label>
+      <div class="col-md-6">
+        <%= f.text_field :shop_name, class: "form-control" %>
+      </div>
+    </div>
+
+
+    <h4>対象とする子供の年齢</h4>
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の年齢 %></label>
+      <div class="col-md-6 pt-2">
+        <%= f.select :child_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
