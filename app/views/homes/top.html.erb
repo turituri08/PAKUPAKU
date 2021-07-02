@@ -13,7 +13,10 @@
           <a href="/users/sign_in" class="btn btn-info font-weight-bold ml-4">ログイン</a>
           <a href="/users/sign_up" class="btn btn-info font-weight-bold ml-3">アカウント作成</a>
         </div>
-
+        
+      <% if user_signed_in? %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% end %>
       </div>
     </div>
   </div>
