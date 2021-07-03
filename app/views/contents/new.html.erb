@@ -1,12 +1,12 @@
 <div class="container">
   <h1>画像投稿フォーム</h1>
-  <%= form_with model: @contents, local:true do |f| %>
-
+  <%= form_with model: @content, local:true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <h4>画像</h4>
     <div class="form-group row mt-5">
       <label class="col-md-4 col-form-label text-md-right"><%= f.label :画像 %></label>
       <div class="col-md-6">
-        <%= f.attachment_field :images, multiple: true, class: "form-control" %>
+        <%= f.attachment_field :content_images_images, multiple: true %>
       </div>
     </div>
 
@@ -14,7 +14,7 @@
     <div class="form-group row mt-5">
       <label class="col-md-4 col-form-label text-md-right"><%= f.label :本文 %></label>
       <div class="col-md-6">
-        <%= f.text_field :shop_name, class: "form-control" %>
+        <%= f.text_area :body, class: "form-control" %>
       </div>
     </div>
 
@@ -23,8 +23,12 @@
     <div class="form-group row">
       <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の年齢 %></label>
       <div class="col-md-6 pt-2">
-        <%= f.select :child_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
+        <%= f.select :target_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
       </div>
+    </div>
+    
+    <div class="actions">
+      <%= f.submit "投稿", class: "btn btn-info mt-4 mb-4" %>
     </div>
 
   <% end %>

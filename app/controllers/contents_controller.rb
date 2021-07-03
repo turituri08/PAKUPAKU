@@ -1,30 +1,37 @@
 class ContentsController < ApplicationController
-  
+
   def new
     @content = Content.new
-  end 
-  
+  end
+
   def index
-  end 
-  
-  def create 
-  end 
-  
+  end
+
+  def create
+    @content = Content.new(content_params)
+    @content.user_id = current_user.id
+    if @content.save
+      redirect_to contents_path, notice: "投稿しました"
+    else
+      render new_content_path
+    end
+  end
+
   def show
-  end 
-  
+  end
+
   def edit
-  end 
-  
+  end
+
   def update
-  end 
-  
+  end
+
   def destroy
-  end 
-  
+  end
+
   private
 
   def content_params
-    params.require(:content).permit(:body, {images: []}, :target_age)
+    params.require(:content).permit(:body, :target_age, content_images_images: [])
   end
 end
