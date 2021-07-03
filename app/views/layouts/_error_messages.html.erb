@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <div class="fade show alert alert-warning d-flex">
+          <li><%= message %></li>
+          <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+        </div>
+      <% end %>
+    </ul>
+<% end %>
