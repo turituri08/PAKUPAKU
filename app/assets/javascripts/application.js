@@ -18,7 +18,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(function() {
+document.addEventListener("turbolinks:load", function() {
   $('.slider').slick({
       dots: true, //スライドの下にドットのナビゲーションを表示
   });

@@ -17,4 +17,5 @@ class User < ApplicationRecord
   validates :child_age,    presence: true
   
   has_many  :contents,     dependent: :destroy
+  has_many  :comments,     dependent: :destroy
 end

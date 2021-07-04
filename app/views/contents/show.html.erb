@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="card w-50 mx-auto mt-4">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-2">
+          <%= attachment_image_tag @content.user, :profile_image, :fill, 20, 20, fallback: "no_image.png", class:"rounded-circle"; %>
+        </div>
+        <div class="col-5 text-left">
+          <%#= link_to user_path(content.user) do %>
+            @<%= @content.user.user_name %>
+          <%# end %>
+        </div>
+        <div class="col-5 text-right">
+          <div class ="text-black-50"><%= @content.target_age %>向けの投稿</div>
+        </div>
+      </div>
+    </div>
+      <div class="slider">
+        <% @content.content_images.each do |image| %>
+          <%= link_to content_path(@content.id) do %>
+            <%= attachment_image_tag image, :image, class:"card-img-top"; %>
+          <% end %>
+        <% end %>
+      </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+          <p class="text-black-50">コメント件数：<%= @comment_all.count %></p>
+          <p class="card-text border-bottom">本文：<%= @content.body %></p>
+          <%= form_with model: @comment, url: {controller: 'comments', action: 'create', content_id: @content.id }, local: true do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <%= f.text_field :comment, rows:'5',placeholder: "コメントを入力", class: "form-control" %>
+            <%= f.hidden_field :content_id, :value => @content.id %>
+            <%= f.submit "送信する", class: "btn-sm btn-outline-dark mt-2" %>
+          <% end %>
+          
+          <div class="dropdown mt-3">
+            <p class="dropdown-toggle" data-toggle="dropdown">コメントを表示</p>
+              <div class="dropdown-menu p-4 bg-light">
+                <ul class="list-unstyled">
+                  <% @comment_all.each do |comment| %>
+                    <li class="border-bottom mt-2">
+                      <%= attachment_image_tag comment.user, :profile_image, :fill, 20, 20, fallback: "no_image.png", class:"rounded-circle"; %>
+                      <%#= link_to user_path(comment.user) do %>
+                        @<%= comment.user.user_name %>
+                      <%# end %>
+                      <%= comment.comment %>
+                      
+                      <% if comment.user == current_user %>
+                        <div class="text-right">
+                          <%= link_to "削除", content_comment_path(comment.content_id, comment), method: :delete %>
+                        </div>
+                      <% end %>
+                      
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
