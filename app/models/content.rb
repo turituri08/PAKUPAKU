@@ -6,5 +6,5 @@ class Content < ApplicationRecord
   belongs_to :user
   has_many   :content_images, dependent: :destroy
   accepts_attachments_for :content_images, attachment: :image
-  
+  has_many   :comments,       dependent: :destroy
 end

@@ -6,6 +6,7 @@ class ContentsController < ApplicationController
 
   def index
     @contents = Content.all
+    @comment  = Comment.new
   end
 
   def create
@@ -19,6 +20,9 @@ class ContentsController < ApplicationController
   end
 
   def show
+    @content = Content.find(params[:id])
+    @comment  = Comment.new
+    @comment_all = Comment.where(content_id: [@content])
   end
 
   def edit
