@@ -11,29 +11,12 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
-    <!--<%# flash.each do |message_type, message| %>-->
-    <!--  <%# if message_type == "alert" %>-->
-    <!--    <div class="fade show alert alert-warning d-flex">-->
-    <!--      <%#= content_tag :div, message %>-->
-    <!--      <button class="close ml-auto" data-dismiss="alert"> &times; </button>-->
-    <!--    </div>-->
-    <!--  <%# else %>-->
-    <!--    <div class="fade show alert alert-info d-flex">-->
-    <!--      <%#= content_tag :div, message %>-->
-    <!--      <button class="close ml-auto" data-dismiss="alert"> &times; </button>-->
-    <!--    </div>-->
-    <!--  <%# end %>-->
-    <!--<%# end %>-->
-
     <%= yield %>
-
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </body>
 </html>
