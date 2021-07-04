@@ -25,3 +25,13 @@ h2 span {
   font-family: -apple-system, 'Chango';
   color: #45859c;
 }
+
+.slick-next {
+    right: 10px !important;
+    z-index: 100;
+ }
+
+.slick-prev {
+    left: 10px !important;
+  z-index: 100;
+ }

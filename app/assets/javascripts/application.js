@@ -17,3 +17,9 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('#slider').slick({
+      dots: true, //スライドの下にドットのナビゲーションを表示
+  });
+});

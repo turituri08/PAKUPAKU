@@ -5,6 +5,7 @@ class ContentsController < ApplicationController
   end
 
   def index
+    @contents = Content.all
   end
 
   def create
