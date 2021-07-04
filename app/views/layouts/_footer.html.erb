@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item nav-link col-3">
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+    </li>
+    <li class="nav-item nav-link col-3">
+      <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
+    </li>
+    <li class="nav-item nav-link col-3">
+      <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+    </li>
+    <li class="nav-item nav-link col-3">
+      <%= link_to content_path(content.id) do %>
+        <%= attachment_image_tag content.user, :profile_image, :fill, 20, 20, fallback: "no_image.png", class:"rounded-circle"; %>
+      <% end %>
+    </li>
+  </ul>
+</nav>
