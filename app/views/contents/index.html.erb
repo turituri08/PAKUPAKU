@@ -26,6 +26,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-10">
+            <%= render "layouts/like", content: content %>
             <p class="card-text border-bottom">本文：<%= content.body %></p>
             <%= form_with model: @comment, url: {controller: 'comments', action: 'create', content_id: content.id }, local: true do |f| %>
               <%= render 'layouts/error_messages', model: f.object %>
