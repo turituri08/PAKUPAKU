@@ -19,4 +19,5 @@ class User < ApplicationRecord
   has_many  :contents,     dependent: :destroy
   has_many  :comments,     dependent: :destroy
   has_many  :likes,        dependent: :destroy
+  has_many  :favorites,    dependent: :destroy
 end
