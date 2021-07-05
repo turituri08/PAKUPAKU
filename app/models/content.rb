@@ -7,4 +7,10 @@ class Content < ApplicationRecord
   has_many   :content_images, dependent: :destroy
   accepts_attachments_for :content_images, attachment: :image
   has_many   :comments,       dependent: :destroy
+  has_many   :likes,          dependent: :destroy
+  
+  #user_idが存在する確認
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 end

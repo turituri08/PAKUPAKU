@@ -25,6 +25,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-10">
+          <%= render "layouts/like", content: @content %>
           <p class="text-black-50">コメント件数：<%= @comment_all.count %></p>
           <p class="card-text border-bottom">本文：<%= @content.body %></p>
           <%= form_with model: @comment, url: {controller: 'comments', action: 'create', content_id: @content.id }, local: true do |f| %>
@@ -33,7 +34,6 @@
             <%= f.hidden_field :content_id, :value => @content.id %>
             <%= f.submit "送信する", class: "btn-sm btn-outline-dark mt-2" %>
           <% end %>
-          
           <div class="dropdown mt-3">
             <p class="dropdown-toggle" data-toggle="dropdown">コメントを表示</p>
               <div class="dropdown-menu p-4 bg-light">
@@ -45,19 +45,16 @@
                         @<%= comment.user.user_name %>
                       <%# end %>
                       <%= comment.comment %>
-                      
                       <% if comment.user == current_user %>
                         <div class="text-right">
                           <%= link_to "削除", content_comment_path(comment.content_id, comment), method: :delete %>
                         </div>
                       <% end %>
-                      
                     </li>
                   <% end %>
                 </ul>
               </div>
           </div>
-          
         </div>
       </div>
     </div>
