@@ -18,7 +18,7 @@
                 <div class="modal-body">
                   <%= form_with model:@user, local:true do |f| %>
                   
-                    <div class="form-group row">
+                    <div class="form-group row mt-5">
                       <label class="col-md-4 col-form-label text-md-right"><%= f.label :ユーザー名 %></label>
                       <div class="col-md-6">
                         <%= f.text_field :user_name, autofocus: true, class: "form-control" %>
@@ -104,7 +104,9 @@
           <div class="row border-bottom p-2">
             <div class="col-4">
               <p><%= @user.user_name %></p>
-              <p class="text-black-50 small"><%= @user.created_at %></p>
+              <p class="text-black-50 small"><%= @user.created_at.to_s(:datetime_jp) %>から</br>
+              PAKUPAKUを利用しています
+              </p>
             </div>
             <div class="col-8">
               <%= @user.introduction %>
