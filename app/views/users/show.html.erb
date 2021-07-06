@@ -98,8 +98,8 @@
             </div>
           </div>
           <div class="col-3 small text-center">投稿数</br><%= @user.contents.count %></div>
-          <div class="col-3 small text-center">フォロー数</div>
-          <div class="col-3 small text-center">フォロワー数</div>
+          <div class="col-3 small text-center">フォロー数</br><%= @user.followings.count %></div>
+          <div class="col-3 small text-center">フォロワー数</br><%= @user.followers.count %></div>
         </div>
           <div class="row border-bottom p-2">
             <div class="col-4">
