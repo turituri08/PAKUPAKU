@@ -20,8 +20,8 @@ class ContentsController < ApplicationController
   end
 
   def show
-    @content = Content.find(params[:id])
-    @comment  = Comment.new
+    @content     = Content.find(params[:id])
+    @comment     = Comment.new
     @comment_all = Comment.where(content_id: [@content])
   end
 
