@@ -103,7 +103,9 @@
           <div class="row border-bottom p-2">
             <div class="col-4">
               <p><%= @user.user_name %></p>
-              <p class="text-black-50 small"><%= @user.created_at %></p>
+              <p class="text-black-50 small"><%= @user.created_at.to_s(:datetime_jp) %>から</br>
+              PAKUPAKUを利用しています
+              </p>
             </div>
             <div class="col-8">
               <%= @user.introduction %>

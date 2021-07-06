@@ -4,12 +4,12 @@
       <div class="card-header">
         <div class="row">
           <div class="col-2">
-            <%= attachment_image_tag content.user, :profile_image, :fill, 20, 20, fallback: "no_image.png", class:"rounded-circle"; %>
+            <%= attachment_image_tag content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
           </div>
           <div class="col-5 text-left">
-            <%#= link_to user_path(content.user) do %>
-              @<%= content.user.user_name %>
-            <%# end %>
+            <%= link_to user_path(content.user) do %>
+              <%= content.user.user_name %>
+            <% end %>
           </div>
           <div class="col-5 text-right">
             <div class ="text-black-50"><%= content.target_age %>向けの投稿</div>
@@ -31,13 +31,13 @@
           </div>
           <div class="col-12">
             <p class="card-text border-bottom">本文：<%= content.body %></p>
+            <p class="text-black-50 small"><%= date_format(content.created_at) %></p>
             <%= form_with model: @comment, url: {controller: 'comments', action: 'create', content_id: content.id }, local: true do |f| %>
               <%= render 'layouts/error_messages', model: f.object %>
               <%= f.text_field :comment, rows:'5',placeholder: "コメントを入力", class: "form-control" %>
               <%= f.hidden_field :content_id, :value => content.id %>
               <%= f.submit "送信する", class: "btn btn-outline-dark mt-2" %>
             <% end %>
-            <!--<span><%#= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:"text-dark" %></span>-->
           </div>
         </div>
       </div>
