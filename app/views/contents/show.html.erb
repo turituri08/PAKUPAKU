@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card w-50 mx-auto mt-4">
+  <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
     <div class="card-header">
       <div class="row">
         <div class="col-2">
@@ -39,25 +39,25 @@
             <%= f.submit "送信する", class: "btn btn-outline-dark mt-2" %>
           <% end %>
           <div class="dropdown mt-3">
-            <p class="dropdown-toggle" data-toggle="dropdown">コメントを表示</p>
-              <div class="dropdown-menu p-4 bg-light">
-                <ul class="list-unstyled">
-                  <% @comment_all.each do |comment| %>
-                    <li class="border-bottom mt-2">
-                      <%= attachment_image_tag comment.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", class:"rounded-circle"; %>
-                      <%= link_to user_path(comment.user) do %>
-                        @<%= comment.user.user_name %>
-                      <% end %>
-                      <%= comment.comment %>
-                      <% if comment.user == current_user %>
-                        <div class="text-right">
-                          <%= link_to "削除", content_comment_path(comment.content_id, comment), method: :delete %>
-                        </div>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
+          <p class="dropdown-toggle" data-toggle="dropdown">コメントを表示</p>
+            <div class="dropdown-menu p-4 bg-light">
+              <ul class="list-unstyled">
+                <% @comment_all.each do |comment| %>
+                  <li class="border-bottom mt-2">
+                    <%= attachment_image_tag comment.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", class:"rounded-circle"; %>
+                    <%= link_to user_path(comment.user) do %>
+                      @<%= comment.user.user_name %>
+                    <% end %>
+                    <%= comment.comment %>
+                    <% if comment.user == current_user %>
+                      <div class="text-right">
+                        <%= link_to "削除", content_comment_path(comment.content_id, comment), method: :delete %>
+                      </div>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

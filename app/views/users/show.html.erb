@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card col-lg-8 offset-lg-2 mx-auto mt-4 px-0">
+    <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 mb-4 px-0">
       <div class="card-header bg-white">
         <div class="row">
           <div class="col-7">
@@ -11,6 +11,7 @@
                 プロフィールを編集
               </div>
             <% end %>
+            
           <div class="modal fade" id="profile-edit-modal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-lg">
               <div class="modal-content">
@@ -113,4 +114,47 @@
           </div>
         </div>
     </div>
+    
+  <% @contents.each do |content| %>
+    <div class="card col-lg-6 offset-lg-3 mx-auto px-0">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-2">
+            <%= attachment_image_tag content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
+          </div>
+          <div class="col-5 text-left">
+            <%= link_to user_path(content.user) do %>
+              <%= content.user.user_name %>
+            <% end %>
+          </div>
+          <div class="col-5 text-right">
+            <div class ="text-black-50"><%= content.target_age %>向けの投稿</div>
+          </div>
+        </div>
+      </div>
+        <div class="slider">
+          <% content.content_images.each do |image| %>
+            <%= link_to content_path(content.id) do %>
+              <%= attachment_image_tag image, :image, class:"card-img-top"; %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="card-body pt-0">
+          <div class="row">
+            <div class="col-8 form-inline pb-2">
+            <div class="text-black-50 text-left">コメント件数：<%= @comment_all.count %></div>
+          </div>
+          <div class="col-4 form-inline">
+            <%= render "layouts/like", content: content %>
+            <%= render "layouts/favorite", content: content %>
+          </div>
+          <div class="col-12">
+            <p class="card-text border-bottom">本文：<%= content.body %></p>
+            <p class="text-black-50 small"><%= date_format(content.created_at) %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
 </div>
