@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="card col-lg-8 offset-lg-2 mx-auto mt-4 px-0">
+      <div class="card-header bg-white">
+        <div class="row">
+          <div class="col-7">
+            <h4 class="text-left"><%= @user.user_name %></h4>
+          </div>
+          <div class="col-5">
+            <% if @user == current_user %>
+              <div class="btn-sm btn-outline-secondary text-center" data-toggle="modal" data-target="#profile-edit-modal">
+                プロフィールを編集
+              </div>
+            <% end %>
+            
+          <div class="modal fade" id="profile-edit-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <%= form_with model:@user, local:true do |f| %>
+                  
+                    <div class="form-group row">
+                      <label class="col-md-4 col-form-label text-md-right"><%= f.label :ユーザー名 %></label>
+                      <div class="col-md-6">
+                        <%= f.text_field :user_name, autofocus: true, class: "form-control" %>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label class="col-md-4 col-form-label text-md-right"><%= f.label :プロフィール画像 %></label>
+                      <div class="col-md-6">
+                        <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label class="col-md-4 col-form-label text-md-right"><%= f.label :自己紹介 %></label>
+                      <div class="col-md-6">
+                        <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の性別 %></label>
+                      <div class="col-md-6 pt-2">
+                        <div class="form-check form-check-inline mr-4">
+                          <%= f.radio_button :child_gender, :"男の子" %>
+                          <label class="form-check-label">男の子</label>
+                        </div>
+                        <div class="form-check form-check-inline mr-4">
+                          <%= f.radio_button :child_gender, :"女の子" %>
+                          <label class="form-check-label">女の子</label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の年齢 %></label>
+                      <div class="col-md-6 pt-2">
+                        <%= f.select :child_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-12 text-right mb-5">
+                        <%= f.submit "更新", class: "btn btn-info" %>
+                      </div>
+                    </div>
+                    
+                  <% end %>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            　   </div>
+              </div>
+            </div>
+          </div>
+            
+          </div>
+        </div>
+      </div>
+      <% if @user.sex == "男性" %>
+        <div class="card-body profile-card-men">
+      <% elsif @user.sex == "女性" %>
+        <div class="card-body profile-card-woman">
+      <% else %>
+        <div class="card-body">
+      <% end %>
+        <div class="row border-bottom">
+          <div class="col-3 pb-3" data-toggle="modal" data-target="#profile-image-modal">
+            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
+          </div>
+          <div class="modal fade" id="profile-image-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <%= attachment_image_tag @user, :profile_image, fallback: "no_image.png", class:"rounded-circle img-fluid"; %>
+            　   </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 small text-center">投稿数</br><%= @user.contents.count %></div>
+          <div class="col-3 small text-center">フォロー数</div>
+          <div class="col-3 small text-center">フォロワー数</div>
+        </div>
+          <div class="row border-bottom p-2">
+            <div class="col-4">
+              <p><%= @user.user_name %></p>
+              <p class="text-black-50 small"><%= @user.created_at %></p>
+            </div>
+            <div class="col-8">
+              <%= @user.introduction %>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
