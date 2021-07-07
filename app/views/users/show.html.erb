@@ -1,62 +1,68 @@
-<div class="container">
-    <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 mb-4 px-0">
-      <div class="card-header bg-white">
-        <div class="row">
-          <div class="col-7">
-            <h4 class="text-left"><%= @user.user_name %></h4>
+<div class="container" style="padding-bottom: 5rem;">
+  <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
+    <div class="card-header bg-white">
+      <div class="row">
+        <div class="col-7">
+          <h4 class="text-left"><%= @user.user_name %></h4>
+        </div>
+        <div class="col-5">
+          <% if @user == current_user %>
+            <div class="btn-sm btn-outline-secondary text-center" data-toggle="modal" data-target="#profile-edit-modal">
+              プロフィールを編集
+            </div>
+          <% end %>
+          <%= render "layouts/follow", user: @user %>
+          <%= render "layouts/user_edit" %>
+        </div>
+        <!-- <%#= link_to " logout", destroy_user_session_path, method: :delete %>　ログアウト -->
+      </div>
+    </div>
+    <% if @user.sex == "男性" %>
+      <div class="card-body profile-card-men">
+    <% elsif @user.sex == "女性" %>
+      <div class="card-body profile-card-woman">
+    <% else %>
+      <div class="card-body">
+    <% end %>
+      <div class="row border-bottom">
+        <div class="col-3 pb-3" data-toggle="modal" data-target="#profile-image-modal">
+          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
+        </div>
+        <div class="modal fade" id="profile-image-modal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= attachment_image_tag @user, :profile_image, fallback: "no_image.png", class:"rounded-circle img-fluid"; %>
+          　   </div>
+            </div>
           </div>
-          <div class="col-5">
-            <% if @user == current_user %>
-              <div class="btn-sm btn-outline-secondary text-center" data-toggle="modal" data-target="#profile-edit-modal">
-                プロフィールを編集
-              </div>
-            <% end %>
-            <%= render "layouts/follow", user: @user %>
-            <%= render "layouts/user_edit" %>
+        </div>
+        <div class="col-3 small text-center">投稿数</br><%= @user.contents.count %></div>
+        <div class="col-3 small text-center">フォロー数</br><%= @user.followings.count %></div>
+        <div class="col-3 small text-center">フォロワー数</br><%= @user.followers.count %></div>
+      </div>
+        <div class="row p-2">
+          <div class="col-4">
+            <p><%= @user.user_name %></p>
+          </div>
+          <div class="col-8">
+            <p class="text-black-50 small"><%= @user.created_at.to_s(:datetime_jp) %>から</br>
+            PAKUPAKUを利用しています
+            </p>
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <%= @user.introduction %>
           </div>
         </div>
       </div>
-      <% if @user.sex == "男性" %>
-        <div class="card-body profile-card-men">
-      <% elsif @user.sex == "女性" %>
-        <div class="card-body profile-card-woman">
-      <% else %>
-        <div class="card-body">
-      <% end %>
-        <div class="row border-bottom">
-          <div class="col-3 pb-3" data-toggle="modal" data-target="#profile-image-modal">
-            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
-          </div>
-          <div class="modal fade" id="profile-image-modal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <%= attachment_image_tag @user, :profile_image, fallback: "no_image.png", class:"rounded-circle img-fluid"; %>
-            　   </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 small text-center">投稿数</br><%= @user.contents.count %></div>
-          <div class="col-3 small text-center">フォロー数</br><%= @user.followings.count %></div>
-          <div class="col-3 small text-center">フォロワー数</br><%= @user.followers.count %></div>
-        </div>
-          <div class="row border-bottom p-2">
-            <div class="col-4">
-              <p><%= @user.user_name %></p>
-              <p class="text-black-50 small"><%= @user.created_at.to_s(:datetime_jp) %>から</br>
-              PAKUPAKUを利用しています
-              </p>
-            </div>
-            <div class="col-8">
-              <%= @user.introduction %>
-            </div>
-          </div>
-        </div>
-    </div>
+  </div>
     
   <% @contents.each do |content| %>
-    <div class="card col-lg-6 offset-lg-3 mx-auto px-0">
+    <div class="card col-lg-6 offset-lg-3 mx-auto px-0 mt-4">
       <div class="card-header">
         <div class="row">
           <div class="col-2">
@@ -96,5 +102,5 @@
       </div>
     </div>
   <% end %>
-  
+  <%= render "layouts/footer" %>
 </div>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom: 5rem;">
   <% @contents.each do |content| %>
     <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
       <div class="card-header">
@@ -43,4 +43,5 @@
       </div>
     </div>
   <% end %>
+  <%= render "layouts/footer" %>
 </div>

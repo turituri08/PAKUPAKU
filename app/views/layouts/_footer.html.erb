@@ -1,0 +1,32 @@
+<div class="card col-lg-6 offset-lg-3 mx-auto px-0 fixed-bottom">
+  <div class="card-body">
+    <div class="row text-center">
+      <div class="col-2">
+        <%= link_to new_content_path do %>
+          <h4 class="fas fa-plus-circle"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= link_to user_path(current_user) do %>
+          <h4 class="fas fa-home"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= link_to users_path do %>
+          <h4 class="fas fa-users"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= link_to contents_path do %>
+          <h4 class="fas fa-utensil-spoon"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <h4 class="fas fa-search"></h4>
+      </div>
+      <div class="col-2">
+        <h4 class="fas fa-bell"></h4>
+      </div>
+    </div>
+  </div>
+</div>
