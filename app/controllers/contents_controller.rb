@@ -25,13 +25,18 @@ class ContentsController < ApplicationController
     @comment_all = Comment.where(content_id: [@content])
   end
 
-  def edit
-  end
-
   def update
+    @content = Content.find(params[:id])
+    if @content.update(content_params)
+      redirect_to content_path(@content.id), notice: "変更を保存しました"
+    else
+      redirect_to content_path(@content.id), alert: "変更に失敗しました"
+    end 
   end
 
   def destroy
+    Content.find(params[:id]).destroy
+    redirect_to contents_path, notice: "投稿を削除しました"
   end
 
   private
