@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <%= form_with model:@user, local:true do |f| %>
-        
+          
           <div class="form-group row mt-5">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :ユーザー名 %></label>
             <div class="col-md-6">
@@ -46,10 +46,8 @@
             </div>
           </div>
           
-          <div class="row">
-            <div class="col-12 text-right mb-5">
-              <%= f.submit "更新", class: "btn btn-info" %>
-            </div>
+          <div class="actions">
+            <%= f.submit "変更", class: "btn btn-info mt-4 mb-4" %>
           </div>
           
         <% end %>

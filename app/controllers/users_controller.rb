@@ -11,8 +11,11 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id), notice: "変更を保存しました"
+    else
+      redirect_to user_path(@user.id), alert: "変更に失敗しました"
+    end
   end 
   
    private
