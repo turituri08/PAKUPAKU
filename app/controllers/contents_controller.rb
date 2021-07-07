@@ -5,7 +5,27 @@ class ContentsController < ApplicationController
   end
 
   def index
-    @contents = Content.all
+    @contents = Content.all.order(created_at: "DESC")
+    @comment  = Comment.new
+  end
+
+  def index_age0
+    @contents = Content.where(target_age: "0歳").order(created_at: "DESC")
+    @comment  = Comment.new
+  end
+
+  def index_age1
+    @contents = Content.where(target_age: "1歳").order(created_at: "DESC")
+    @comment  = Comment.new
+  end
+
+  def index_age2
+    @contents = Content.where(target_age: "2歳").order(created_at: "DESC")
+    @comment  = Comment.new
+  end
+
+  def index_age3
+    @contents = Content.where(target_age: "3歳").order(created_at: "DESC")
     @comment  = Comment.new
   end
 
@@ -31,7 +51,7 @@ class ContentsController < ApplicationController
       redirect_to content_path(@content.id), notice: "変更を保存しました"
     else
       redirect_to content_path(@content.id), alert: "変更に失敗しました"
-    end 
+    end
   end
 
   def destroy
