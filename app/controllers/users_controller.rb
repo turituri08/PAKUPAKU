@@ -8,6 +8,19 @@ class UsersController < ApplicationController
     @contents    = Content.where(user_id: [@user]).order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@content])
   end 
+
+  # ユーザーがいいねした投稿を全て表示
+  def show_like
+    @user        = User.find(params[:user_id])
+    @contents    = @user.likes.order(created_at: "DESC")
+    @comment_all = Comment.where(content_id: [@contents])
+  end 
+  
+  def show_favorite
+    @user        = User.find(params[:user_id])
+    @contents    = @user.favorites.order(created_at: "DESC")
+    @comment_all = Comment.where(content_id: [@contents])
+  end 
   
   def update
     @user = User.find(params[:id])
