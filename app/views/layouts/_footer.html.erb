@@ -1,18 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item nav-link col-3">
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-    </li>
-    <li class="nav-item nav-link col-3">
-      <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
-    </li>
-    <li class="nav-item nav-link col-3">
-      <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
-    </li>
-    <li class="nav-item nav-link col-3">
-      <%= link_to content_path(content.id) do %>
-        <%= attachment_image_tag content.user, :profile_image, :fill, 20, 20, fallback: "no_image.png", class:"rounded-circle"; %>
-      <% end %>
-    </li>
-  </ul>
-</nav>
+<div class="card col-lg-6 offset-lg-3 mx-auto px-0 fixed-bottom">
+  <div class="card-body">
+    <div class="row text-center">
+      <div class="col-2">
+        <%= link_to new_content_path do %>
+          <h4 class="fas fa-plus-circle"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= link_to user_path(current_user) do %>
+          <h4 class="fas fa-home"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= link_to users_path do %>
+          <h4 class="fas fa-users"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= link_to contents_path do %>
+          <h4 class="fas fa-utensil-spoon"></h4>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <h4 class="fas fa-search"></h4>
+      </div>
+      <div class="col-2">
+        <h4 class="fas fa-bell"></h4>
+      </div>
+    </div>
+  </div>
+</div>

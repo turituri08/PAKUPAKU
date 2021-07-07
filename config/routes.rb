@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resource :favorites, only:[:create, :destroy]
     resources :comments, only:[:create, :destroy]
   end
-  resources :users,         only:[:show, :update]
+  resources :users,         only:[:index, :show, :update]
   resources :relationships, only:[:create, :destroy]
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
