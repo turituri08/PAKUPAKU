@@ -15,3 +15,28 @@
     left: 20px !important;
   z-index: 100;
  }
+ 
+@media screen and (max-width: 768px) {
+	.card-img-top{
+	  height: 350px;
+	}
+}
+ 
+@media screen and (max-width: 490px) {
+	.card-img-top{
+	  height: 300px;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	.card-img-top{
+	  height: 250px;
+	}
+}
+
+@media screen and (max-width: 340px) {
+	.card-img-top{
+	  height: 200px;
+	}
+}
+
