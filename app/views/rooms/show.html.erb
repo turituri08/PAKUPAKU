@@ -1,40 +1,32 @@
-<div class="left-button">
-  <%= link_to "ユーザー一覧に戻る", "/users/index",class:"edit-link" %>
-</div>
-<h4 class="rooms-title">気になる同士</h4>
-<% @entries.each do |e| %>
-  <div class="user-name">
-  <strong>
-    <%#= image_tag e.user.avatar, class:"user-image" %>
-    <%= attachment_image_tag User.find(e.user_id), :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
-    <a class="rooms-user-link" href="/users/<%= e.user_id %>">
-      <%= (User.find(e.user_id)).user_name %>さん
-    </a>
-  </strong>
-  </div>
-<% end %>
-<hr>
-<div class="chats">
-  <div class="chat">
-    <% if @messages.present? %>
-      <% @messages.each do |m| %>
-        <div class="chat-box">
-          <div class="chat-face">
-            <%#= image_tag m.user.avatar, class:"user-image" %>
-            <%= attachment_image_tag m.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
+<div class="container room-bg pt-2">
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <% if m.user.id == current_user.id %>
+        <div class="balloon_l">
+          <div class="faceicon">
+            <%= attachment_image_tag m.user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
           </div>
-          <div class="chat-hukidashi"> <strong><%= m.message %></strong> <br>
-            <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+          <div class="says"><%= m.message %><br><span class="small"><%= m.created_at.strftime("%Y-%m-%d %H:%M")%></span></div>
+        </div>
+      <% else %>
+        <div class="balloon_r">
+          <div class="faceicon">
+            <%= attachment_image_tag m.user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
           </div>
+          <div class="says"><%= m.message %><br><span class="small"><%= m.created_at.strftime("%Y-%m-%d %H:%M")%></span></div>
         </div>
       <% end %>
     <% end %>
-  </div>
-  <div class="posts">
-    <%= form_for @message do |f| %>
-      <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
-      <%= f.hidden_field :room_id, value: @room.id %>
-      <%= f.submit "投稿",class: 'form-submit'%>
-    <% end %>
+    <%= link_to "ユーザー一覧へ戻る", users_path, class: "btn btn-secondary mt-3" %>
+  <% end %>
+
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+      <%= form_for @message do |f| %>
+        <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class:"form-control" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "投稿",class: 'btn btn-info mt-3 mb-5'%>
+      <% end %>
+    </div>
   </div>
 </div>
