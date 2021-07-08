@@ -1,9 +1,9 @@
 <% if content.favorited_by?(current_user) %>
-    <%= link_to content_favorites_path(content), method: :delete do %>
+    <%= link_to content_favorites_path(content), method: :delete, class: "deco-none" do %>
       <h5 class="favorited fas fa-star mr-2 pb-2"></h5><%= content.favorites.count %>
     <% end %>
   <% else %>
-    <%= link_to content_favorites_path(content), method: :post do %>
+    <%= link_to content_favorites_path(content), method: :post, class: "deco-none" do %>
       <h5 class="far fa-star mr-2 pb-2"></h5><%= content.favorites.count %>
     <% end %>
 <% end %>

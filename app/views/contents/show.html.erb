@@ -6,7 +6,7 @@
           <%= attachment_image_tag @content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
         </div>
         <div class="col-4 text-left">
-          <%= link_to user_path(@content.user) do %>
+          <%= link_to user_path(@content.user), class: "deco-none" do %>
             <%= @content.user.user_name %>
           <% end %>
         </div>

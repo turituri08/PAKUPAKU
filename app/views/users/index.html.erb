@@ -35,12 +35,12 @@
             </div>
           </div>
           <div class="col-3 small text-center">投稿数</br><%= user.contents.count %></div>
-          <div class="col-3 small text-center">フォロー数</br><%= user.followings.count %></div>
-          <div class="col-3 small text-center">フォロワー数</br><%= user.followers.count %></div>
+          <div class="col-3 small text-center">フォロー</br><%= user.followings.count %></div>
+          <div class="col-3 small text-center">フォロワー</br><%= user.followers.count %></div>
         </div>
           <div class="row p-2">
             <div class="col-4">
-              <%= link_to user_path(user) do %>
+              <%= link_to user_path(user), class: "deco-none" do %>
                 <%= user.user_name %>
               <% end %>
             </div>
