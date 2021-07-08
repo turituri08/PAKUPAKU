@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
       @message = Message.create(params.require(:message).permit(:user_id, :message, :room_id).merge(user_id: current_user.id))
       redirect_back(fallback_location: root_path)
     else
-      re room_path(@message.room_id), alert: "投稿に失敗しました"
+      render room_path(@message.room_id), alert: "投稿に失敗しました"
     end
   end
 
