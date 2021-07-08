@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @users = User.all
@@ -8,6 +9,25 @@ class UsersController < ApplicationController
     @user        = User.find(params[:id])
     @contents    = Content.where(user_id: [@user]).order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@content])
+    #・DM機能　Entryテーブルからログインしているユーザーとshowページのユーザーを取ってくる
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry        = Entry.where(user_id: @user.id)
+    #idが一致しなければroomが作られているか確認し、なければnew、あれば@roomIdにすでに作られているroom_idを入れる
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room  = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   # ユーザーがいいねした投稿を全て表示

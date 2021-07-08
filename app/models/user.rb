@@ -26,6 +26,9 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers,     through: :reverse_of_relationships, source: :user
   
+  has_many :messages,      dependent: :destroy
+  has_many :entries,       dependent: :destroy
+  
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
@@ -48,5 +51,5 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
-
+  
 end

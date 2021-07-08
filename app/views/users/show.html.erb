@@ -2,12 +2,12 @@
   <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
     <div class="card-header bg-white">
       <div class="row">
-        <div class="col-7">
+        <div class="col-8">
           <h4 class="text-left"><%= @user.user_name %></h4>
         </div>
-        <div class="col-5">
+        <div class="col-4">
           <% if @user == current_user %>
-            <div class="btn-sm btn-outline-secondary text-center" data-toggle="modal" data-target="#profile-edit-modal">
+            <div class="btn-sm btn-outline-secondary" data-toggle="modal" data-target="#profile-edit-modal">
               プロフィールを編集
             </div>
           <% end %>
@@ -43,15 +43,35 @@
         <div class="col-3 small text-center">フォロワー数</br><%= @user.followers.count %></div>
       </div>
         <div class="row p-2">
-          <div class="col-4">
+          <div class="col-3">
             <p><%= @user.user_name %></p>
           </div>
-          <div class="col-8">
+          <div class="col-7">
             <p class="text-black-50 small"><%= @user.created_at.to_s(:datetime_jp) %>から</br>
             PAKUPAKUを利用しています
             </p>
-            
           </div>
+          
+          <div class="col-2 pr-2">
+          <% unless @user.id == current_user.id %>
+            <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
+              <% if @isRoom == true %>
+                <a href="/rooms/<%= @roomId %>"><h5 class="far fa-paper-plane pt-2"></h5></a>
+              <% else %>
+                <%= form_for @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= button_tag :type => "submit", :class =>"btn btn-default" do %>
+                    <h5 class="far fa-paper-plane"></h5>
+                  <% end %>
+                  <%#= f.submit "️チャット", class: "btn btn-outline-info" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+          
         </div>
         <div class="row">
           <div class="col-12">

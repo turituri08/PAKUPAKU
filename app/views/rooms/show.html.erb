@@ -1,0 +1,32 @@
+<div class="container room-bg pt-2">
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <% if m.user.id == current_user.id %>
+        <div class="balloon_l">
+          <div class="faceicon">
+            <%= attachment_image_tag m.user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
+          </div>
+          <div class="says"><%= m.message %><br><span class="small"><%= m.created_at.strftime("%Y-%m-%d %H:%M")%></span></div>
+        </div>
+      <% else %>
+        <div class="balloon_r">
+          <div class="faceicon">
+            <%= attachment_image_tag m.user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
+          </div>
+          <div class="says"><%= m.message %><br><span class="small"><%= m.created_at.strftime("%Y-%m-%d %H:%M")%></span></div>
+        </div>
+      <% end %>
+    <% end %>
+    <%= link_to "ユーザー一覧へ戻る", users_path, class: "btn btn-secondary mt-3" %>
+  <% end %>
+
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+      <%= form_for @message do |f| %>
+        <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class:"form-control" %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "投稿",class: 'btn btn-info mt-3 mb-5'%>
+      <% end %>
+    </div>
+  </div>
+</div>
