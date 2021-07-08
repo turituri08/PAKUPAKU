@@ -1,27 +1,27 @@
 class UsersController < ApplicationController
-  
+
   def index
-  end 
-  
+  end
+
   def show
     @user        = User.find(params[:id])
     @contents    = Content.where(user_id: [@user]).order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@content])
-  end 
+  end
 
   # ユーザーがいいねした投稿を全て表示
-  def show_like
+  def user_likes
     @user        = User.find(params[:user_id])
     @contents    = @user.likes.order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@contents])
-  end 
-  
-  def show_favorite
+  end
+
+  def user_favorites
     @user        = User.find(params[:user_id])
     @contents    = @user.favorites.order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@contents])
-  end 
-  
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -29,8 +29,8 @@ class UsersController < ApplicationController
     else
       redirect_to user_path(@user.id), alert: "変更に失敗しました"
     end
-  end 
-  
+  end
+
    private
 
   def user_params
