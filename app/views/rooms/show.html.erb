@@ -1,4 +1,4 @@
-<div class="container room-bg">
+<div class="container room-bg pt-2">
   <% if @messages.present? %>
     <% @messages.each do |m| %>
       <% if m.user.id == current_user.id %>
@@ -19,9 +19,9 @@
     <% end %>
     <%= link_to "ユーザー一覧へ戻る", users_path, class: "btn btn-secondary mt-3" %>
   <% end %>
-  
-  <div class="row">
-    <div class="col-md-6 offset-md-3 mt-5">
+
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
       <%= form_for @message do |f| %>
         <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class:"form-control" %>
         <%= f.hidden_field :room_id, value: @room.id %>

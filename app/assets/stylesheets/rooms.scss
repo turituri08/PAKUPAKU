@@ -3,9 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .room-bg{
-  background-image: url(/assets/room-bg-image.jpeg);
-  background-size: cover;
-  width: 100%;
+  background-image: url(/assets/room-bg-image-2.jpeg);
+  background-size: 100%;
+  background-color:rgba(255,255,255,0.6);
+  background-blend-mode:lighten;
+  background-position:center ;
+  width: 100vh;
+  height: 100vh;
 }
 
 /*吹き出し*/
@@ -37,7 +41,7 @@
   position: relative;
   padding: 17px 13px 15px 18px;
   border-radius: 12px;
-  background: #99dddd;/*色は任意*/
+  background: #bbe2f1;/*色は任意*/
   box-sizing:border-box;
   margin:0 !important;
   line-height:1.5;
@@ -57,9 +61,9 @@
 }
 .balloon_l .says:after {
   left: -26px;
-  border-right: 22px solid #99dddd;
+  border-right: 22px solid #bbe2f1;
 }
 .balloon_r .says:after {
   right: -26px;
-  border-left: 22px solid #99dddd;
+  border-left: 22px solid #bbe2f1;
 }
