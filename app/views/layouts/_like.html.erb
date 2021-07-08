@@ -1,12 +1,12 @@
 <% if content.liked_by?(current_user) %>
   <div class="mr-3">
-    <%= link_to content_likes_path(content), method: :delete, class: "decoration-none" do %>
+    <%= link_to content_likes_path(content), method: :delete, class: "deco-none" do %>
       <h5 class="liked fas fa-heart mr-2 pb-2"></h5><%= content.likes.count %>
     <% end %>
   </div>
   <% else %>
   <div class="mr-3">
-    <%= link_to content_likes_path(content), method: :post, class: "decoration-none" do %>
+    <%= link_to content_likes_path(content), method: :post, class: "deco-none" do %>
       <h5 class="far fa-heart mr-2 pb-2"></h5><%= content.likes.count %>
     <% end %>
   </div>

@@ -37,3 +37,44 @@ h2 span {
 .favorited {
   color: #ffd700;
 }
+
+.deco-none {
+  color: black;
+  text-decoration: none;   
+}
+
+.deco-none:hover {
+  color: black;
+  text-decoration: none;
+  opacity: 0.6;
+  transition: 0.4s;
+}
+
+.deco-none-footer {
+ color: #38aef0;
+ text-decoration: none;
+}
+
+.deco-none-footer:hover{
+  opacity: 0.7;
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+@media screen and (max-width: 490px) {
+	body {
+	  font-size: 80%;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	body {
+	  font-size: 75%;
+	}
+}
+
+@media screen and (max-width: 340px) {
+	body {
+	  font-size: 70%;
+	}
+}

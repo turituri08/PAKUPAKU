@@ -2,12 +2,12 @@
   <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
     <div class="card-header bg-white">
       <div class="row">
-        <div class="col-8">
+        <div class="col-5">
           <h4 class="text-left"><%= @user.user_name %></h4>
         </div>
-        <div class="col-4">
+        <div class="col-7 text-right">
           <% if @user == current_user %>
-            <div class="btn-sm btn-outline-secondary" data-toggle="modal" data-target="#profile-edit-modal">
+            <div class="btn btn-outline-secondary" data-toggle="modal" data-target="#profile-edit-modal">
               プロフィールを編集
             </div>
           <% end %>
@@ -39,8 +39,8 @@
           </div>
         </div>
         <div class="col-3 small text-center">投稿数</br><%= @user.contents.count %></div>
-        <div class="col-3 small text-center">フォロー数</br><%= @user.followings.count %></div>
-        <div class="col-3 small text-center">フォロワー数</br><%= @user.followers.count %></div>
+        <div class="col-3 small text-center">フォロー</br><%= @user.followings.count %></div>
+        <div class="col-3 small text-center">フォロワー</br><%= @user.followers.count %></div>
       </div>
         <div class="row p-2">
           <div class="col-3">
@@ -51,7 +51,7 @@
             PAKUPAKUを利用しています
             </p>
           </div>
-          
+
           <div class="col-2 pr-2">
           <% unless @user.id == current_user.id %>
             <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
@@ -71,7 +71,7 @@
             <% end %>
           <% end %>
         </div>
-          
+
         </div>
         <div class="row">
           <div class="col-12">
@@ -89,7 +89,7 @@
             <%= attachment_image_tag content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
           </div>
           <div class="col-5 text-left">
-            <%= link_to user_path(content.user) do %>
+            <%= link_to user_path(content.user), class: "deco-none" do %>
               <%= content.user.user_name %>
             <% end %>
           </div>
