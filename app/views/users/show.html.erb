@@ -5,7 +5,7 @@
         <div class="col-5">
           <h4 class="text-left"><%= @user.user_name %></h4>
         </div>
-        <div class="col-7 text-right">
+        <div class="col-6 text-right">
           <% if @user == current_user %>
             <div class="btn btn-outline-secondary" data-toggle="modal" data-target="#profile-edit-modal">
               プロフィールを編集
@@ -14,7 +14,13 @@
           <%= render "layouts/follow", user: @user %>
           <%= render "layouts/user_edit" %>
         </div>
-        <!-- <%#= link_to " logout", destroy_user_session_path, method: :delete %>　ログアウト -->
+          <div class="col-1">
+            <% if @user == current_user %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "deco-none" do %>
+                <h5 class="fas fa-sign-out-alt text-black-50 pt-2" data-toggle="tooltip" title="ログアウト"></h5>
+              <% end %>
+            <% end %>
+          </div>
       </div>
     </div>
     <% if @user.sex == "男性" %>
