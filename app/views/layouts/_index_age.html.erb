@@ -33,12 +33,7 @@
           <div class="col-12">
             <p class="card-text border-bottom">本文：<%= content.body %></p>
             <p class="text-black-50 small"><%= date_format(content.created_at) %></p>
-            <%= form_with model: @comment, url: {controller: 'comments', action: 'create', content_id: content.id }, local: true do |f| %>
-              <%= render 'layouts/error_messages', model: f.object %>
-              <%= f.text_field :comment, rows:'5',placeholder: "コメントを入力", class: "form-control" %>
-              <%= f.hidden_field :content_id, :value => content.id %>
-              <%= f.submit "送信する", class: "btn btn-outline-dark mt-2" %>
-            <% end %>
+            <%= render "layouts/comment", comment: @comment, content: content %>
           </div>
         </div>
       </div>

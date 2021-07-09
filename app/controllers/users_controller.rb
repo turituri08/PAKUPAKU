@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_q, only: [:index, :search]
 
   def index
     @users = User.all
@@ -51,8 +52,16 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id), alert: "変更に失敗しました"
     end
   end
+  
+  def search
+    @results = @q.result
+  end
 
-   private
+  private
+   
+  def set_q
+    @q = User.ransack(params[:q])
+  end
 
   def user_params
     params.require(:user).permit(:user_name, :profile_image, :introduction, :child_gender, :child_age)

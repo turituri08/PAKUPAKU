@@ -9,10 +9,16 @@ Rails.application.routes.draw do
     resource :likes,     only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
     resources :comments, only:[:create, :destroy]
+    collection do
+      get 'search'
+    end 
   end
   resources :users,      only:[:index, :show, :update] do
     get 'user_likes'     => 'users#user_likes'
     get 'user_favorites' => 'users#user_favorites'
+    collection do
+      get 'search'
+    end 
   end
   resources :relationships, only:[:create, :destroy]
   resources :messages,      only:[:create]

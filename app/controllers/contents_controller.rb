@@ -1,5 +1,6 @@
 class ContentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_q, only: [:index, :search]
 
   def new
     @content = Content.new
@@ -59,8 +60,17 @@ class ContentsController < ApplicationController
     Content.find(params[:id]).destroy
     redirect_to contents_path, notice: "投稿を削除しました"
   end
+  
+  def search
+    @results = @q.result
+    @comment  = Comment.new
+  end
 
   private
+  
+  def set_q
+    @q = Content.ransack(params[:q])
+  end
 
   def content_params
     params.require(:content).permit(:body, :target_age, content_images_images: [])
