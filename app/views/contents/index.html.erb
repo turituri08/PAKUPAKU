@@ -6,50 +6,10 @@
         <%= f.search_field :body_cont, :placeholder => "キーワード検索", class: "form-control"  %>
       </div>
       <div class="col-2 col-lg-1">
-        <%= f.submit '検索', class: "btn btn-secondary" %>
+        <%= f.submit '検索', class: "btn btn-outline-secondary" %>
       </div>
     </div>
   <% end %>
-  <% @contents.each do |content| %>
-    <div class="card col-lg-6 offset-lg-3 mx-auto mt-3 px-0">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-2">
-            <%= attachment_image_tag content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
-          </div>
-          <div class="col-5 text-left">
-            <%= link_to user_path(content.user), class: "deco-none" do %>
-              <%= content.user.user_name %>
-            <% end %>
-          </div>
-          <div class="col-5 text-right">
-            <div class ="text-black-50"><%= content.target_age %>向けの投稿</div>
-          </div>
-        </div>
-      </div>
-        <% if content.content_images.present? %>
-          <div class="slider">
-            <% content.content_images.each do |image| %>
-              <%= link_to content_path(content.id) do %>
-                <%= attachment_image_tag image, :image, class:"card-img-top"; %>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      <div class="card-body pt-0">
-        <div class="row">
-          <div class="col-lg-4 offset-lg-8 form-inline pt-3">
-            <%= render "layouts/like", content: content %>
-            <%= render "layouts/favorite", content: content %>
-          </div>
-          <div class="col-12">
-            <p class="card-text border-bottom"><%= content.body %></p>
-            <p class="text-black-50 small"><%= date_format(content.created_at) %></p>
-            <%= render "layouts/comment", comment: @comment, content: content %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render "layouts/contents_index", contents: @contents %>
   <%= render "layouts/footer" %>
 </div>
