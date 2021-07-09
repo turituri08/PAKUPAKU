@@ -1,15 +1,5 @@
 <div class="container" style="padding-bottom: 5rem;">
-  <%= search_form_for @q, url: search_users_path do |f| %>
-    <div class="row mx-auto mt-3 px-0">
-      <div class="col-5 offset-lg-3">
-        <%= f.search_field :user_name_cont, :placeholder => "ユーザー検索", class: "form-control"  %>
-      </div>
-      <div class="col-1">
-        <%= f.submit '検索', class: "btn btn-secondary" %>
-      </div>
-    </div>
-  <% end %>
-  <% @users.each do |user| %>
+  <% @results.each do |user| %>
     <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
       <div class="card-header bg-white">
         <div class="row">

@@ -1,16 +1,5 @@
 <div class="container" style="padding-bottom: 5rem;">
-  <%= render "layouts/nav" %>
-  <%= search_form_for @q, url: search_contents_path do |f| %>
-    <div class="row mx-auto mt-3 px-0">
-      <div class="col-5 offset-lg-3">
-        <%= f.search_field :body_cont, :placeholder => "キーワード検索", class: "form-control"  %>
-      </div>
-      <div class="col-1">
-        <%= f.submit '検索', class: "btn btn-secondary" %>
-      </div>
-    </div>
-  <% end %>
-  <% @contents.each do |content| %>
+  <% @results.each do |content| %>
     <div class="card col-lg-6 offset-lg-3 mx-auto mt-3 px-0">
       <div class="card-header">
         <div class="row">
