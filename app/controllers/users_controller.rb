@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user        = User.find(params[:id])
     @contents    = Content.where(user_id: [@user]).order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@content])
+    @comment     = Comment.new
     #・DM機能　Entryテーブルからログインしているユーザーとshowページのユーザーを取ってくる
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry        = Entry.where(user_id: @user.id)
