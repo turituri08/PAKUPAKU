@@ -31,7 +31,7 @@
             <%= render "layouts/favorite", content: content %>
           </div>
           <div class="col-12">
-            <p class="card-text border-bottom">本文：<%= content.body %></p>
+            <p class="card-text border-bottom"><%= content.body %></p>
             <p class="text-black-50 small"><%= date_format(content.created_at) %></p>
             <%= render "layouts/comment", comment: @comment, content: content %>
           </div>
