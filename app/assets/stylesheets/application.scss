@@ -62,6 +62,13 @@ h2 span {
   transition: 0.4s;
 }
 
+.n-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
+}
+
 @media screen and (max-width: 490px) {
 	body {
 	  font-size: 80%;

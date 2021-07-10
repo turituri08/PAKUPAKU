@@ -4,7 +4,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
+    @content = @comment.content
     if @comment.save
+      @content.create_notification_comment(current_user, @comment.id)
       redirect_to controller: 'contents', action: 'show', id: @comment.content_id
     else
       redirect_to contents_path
