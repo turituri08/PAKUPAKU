@@ -45,8 +45,14 @@
           </div>
         </div>
         <div class="col-3 small text-center">投稿数</br><%= @user.contents.count %></div>
-        <div class="col-3 small text-center">フォロー</br><%= @user.followings.count %></div>
-        <div class="col-3 small text-center">フォロワー</br><%= @user.followers.count %></div>
+        <div class="col-3 small text-center">
+          <%= link_to user_user_followings_path(@user), class: "deco-none" do %>フォロー</br><% end %>
+          <%= @user.followings.count %>
+        </div>
+        <div class="col-3 small text-center">
+          <%= link_to user_user_followers_path(@user), class: "deco-none" do %>フォロワー</br><% end %>
+          <%= @user.followers.count %>
+        </div>
       </div>
         <div class="row p-2">
           <div class="col-3">

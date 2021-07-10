@@ -19,12 +19,12 @@
 
     <% flash.each do |message_type, message| %>
       <% if message_type == "alert" %>
-        <div class="fade show alert alert-warning d-flex">
+        <div class="fade show alert alert-warning d-flex mb-0">
           <%= content_tag :div, message %>
           <button class="close ml-auto" data-dismiss="alert"> &times; </button>
         </div>
       <% else %>
-        <div class="fade show alert alert-info d-flex">
+        <div class="fade show alert alert-info d-flex mb-0">
           <%= content_tag :div, message %>
           <button class="close ml-auto" data-dismiss="alert"> &times; </button>
         </div>

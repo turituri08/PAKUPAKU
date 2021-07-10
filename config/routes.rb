@@ -14,8 +14,10 @@ Rails.application.routes.draw do
     end 
   end
   resources :users,      only:[:index, :show, :update] do
-    get 'user_likes'     => 'users#user_likes'
-    get 'user_favorites' => 'users#user_favorites'
+    get 'user_likes'      => 'users#user_likes'
+    get 'user_favorites'  => 'users#user_favorites'
+    get 'user_followings' => 'users#user_followings'
+    get 'user_followers'  => 'users#user_followers'
     collection do
       get 'search'
     end 
