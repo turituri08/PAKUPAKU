@@ -1,0 +1,53 @@
+<div class="container" style="padding-bottom: 5rem;">
+  <% @users.each do |user| %>
+    <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
+      <div class="card-header bg-white">
+        <div class="row">
+          <div class="col-7">
+            <%= link_to user_path(user), class: "deco-none" do %>
+              <h4 class="text-left"><%= user.user_name %></h4>
+            <% end %>
+          </div>
+          <div class="col-5">
+            <%= render "layouts/follow", user: user %>
+          </div>
+          <!-- <%#= link_to " logout", destroy_user_session_path, method: :delete %>　ログアウト -->
+        </div>
+      </div>
+      <% if user.sex == "男性" %>
+        <div class="card-body profile-card-men">
+      <% elsif user.sex == "女性" %>
+        <div class="card-body profile-card-woman">
+      <% else %>
+        <div class="card-body">
+      <% end %>
+        <div class="row border-bottom">
+          <div class="col-3 pb-3">
+            <%= link_to user_path(user) do %>
+              <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.png", class:"rounded-circle"; %>
+            <% end %>
+          </div>
+          <div class="col-3 small text-center">投稿数</br><%= user.contents.count %></div>
+          <div class="col-3 small text-center">フォロー</br><%= user.followings.count %></div>
+          <div class="col-3 small text-center">フォロワー</br><%= user.followers.count %></div>
+        </div>
+          <div class="row p-2">
+            <div class="col-4">
+              <%= user.user_name %>
+            </div>
+            <div class="col-8">
+              <p class="text-black-50 small"><%= user.created_at.to_s(:datetime_jp) %>から</br>
+              PAKUPAKUを利用しています
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <%= user.introduction %>
+            </div>
+          </div>
+        </div>
+    </div>
+  <% end %>
+  <%= render "layouts/footer" %>
+</div>
