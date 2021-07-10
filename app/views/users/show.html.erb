@@ -68,7 +68,7 @@
           <% unless @user.id == current_user.id %>
             <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
               <% if @isRoom == true %>
-                <a href="/rooms/<%= @roomId %>"><h5 class="far fa-paper-plane pt-2"></h5></a>
+                <a href="/rooms/<%= @roomId %>" class="deco-none"><h5 class="far fa-paper-plane pt-2"></h5></a>
               <% else %>
                 <%= form_for @room do |f| %>
                   <%= fields_for @entry do |e| %>
