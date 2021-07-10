@@ -5,6 +5,7 @@ class LikesController < ApplicationController
     content = Content.find(params[:content_id])
     like = current_user.likes.new(content_id: content.id)
     like.save
+    content.create_notification_like(current_user)
     redirect_back(fallback_location: root_path)
   end 
   

@@ -1,0 +1,14 @@
+<div class="container" style="padding-bottom: 5rem;"> 
+  <div class="col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
+    <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+      <% if notifications.exists? %>
+        <% notifications.each do |notification| %>
+          <%= render "layouts/notifications", notification: notification %>
+        <% end %>
+        <%= paginate notifications %>
+      <% else %>
+      <p>| 通知はありません</p>
+    <% end %>
+  </div>
+  <%= render "layouts/footer" %>
+</div>

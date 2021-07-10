@@ -1,0 +1,41 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="border-bottom">
+  <div class="form-inline mt-4">
+    <div class="col-3">
+      <%= link_to user_path(visitor) do %>
+        <%= attachment_image_tag visitor, :profile_image, :fill, 30, 30, fallback: "no_image.png", class:"rounded-circle"; %>
+      <% end %>
+    </div>
+    <div class="col-9">
+      <%= visitor.user_name %>
+      さんが
+      <% case notification.action %>
+        <% when 'follow' then %>
+          あなたをフォローしました
+        <% when 'like' then %>
+          <%= link_to 'あなたの投稿', notification.content, style: "font-weight: bold;", class: "deco-none" %>
+          にいいねしました
+        <% when 'favorite' then %>
+          <%= link_to 'あなたの投稿', notification.content, style: "font-weight: bold;", class: "deco-none" %>
+          にお気に入りしました
+        <% when 'comment' then %>
+          <% if notification.content.user_id == visited.id %>
+            <%= link_to "あなたの投稿", notification.content, style: "font-weight: bold;", class: "deco-none" %>
+            にコメントしました
+        <% end %>
+        <% when 'message' then %>
+          メッセージを送信しました
+      <% end %>
+      <div class="small text-muted text-right pl-3">
+        <% case notification.action %>
+          <% when 'like' then %>
+            <i class="liked fas fa-heart mr-2 pb-2"></i>
+          <% when 'favorite' then %>
+            <i class="favorited fas fa-star mr-2 pb-2"></i>
+        <% end %>
+        <%= time_ago_in_words(notification.created_at).upcase %>
+      </div>
+    </div>
+  </div>
+</div>

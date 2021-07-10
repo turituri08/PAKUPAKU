@@ -1,4 +1,4 @@
-<div class="container room-bg pt-2">
+<div class="container room-bg pt-2" style="padding-bottom: 5rem;">
   <% if @messages.present? %>
     <% @messages.each do |m| %>
       <% if m.user.id == current_user.id %>
@@ -17,16 +17,17 @@
         </div>
       <% end %>
     <% end %>
-    <%= link_to "ユーザー一覧へ戻る", users_path, class: "btn btn-secondary mt-3" %>
   <% end %>
-
-  <div class="row mt-5">
-    <div class="col-md-6 offset-md-3">
-      <%= form_for @message do |f| %>
-        <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class:"form-control" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-        <%= f.submit "投稿",class: 'btn btn-info mt-3 mb-5'%>
-      <% end %>
+  <%= form_for @message do |f| %>
+  <div class="form-group row mt-5">
+    <div class="col-md-5 offset-md-3 mt-2">
+      <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class:"form-control" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+    </div>
+    <div class="col-md-2 mt-2">
+      <%= f.submit "投稿",class: 'btn btn-info mt- mb-5'%>
     </div>
   </div>
+  <% end %>
+  <%= render "layouts/footer" %>
 </div>

@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
     content = Content.find(params[:content_id])
     favorite = current_user.favorites.new(content_id: content.id)
     favorite.save
+    content.create_notification_favorite(current_user)
     redirect_back(fallback_location: root_path)
   end 
   
