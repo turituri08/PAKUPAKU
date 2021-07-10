@@ -24,6 +24,8 @@
             <%= link_to "あなたの投稿", notification.content, style: "font-weight: bold;", class: "deco-none" %>
             にコメントしました
         <% end %>
+        <% when 'message' then %>
+          メッセージを送信しました
       <% end %>
       <div class="small text-muted text-right pl-3">
         <% case notification.action %>
