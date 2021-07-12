@@ -44,16 +44,16 @@ class UsersController < ApplicationController
     @contents    = @user.favorites.order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@contents])
   end
-  
+
   def user_followings
     @user        = User.find(params[:user_id])
     @users       = @user.followings.order(created_at: "DESC")
-  end 
-  
+  end
+
   def user_followers
     @user        = User.find(params[:user_id])
     @users       = @user.followers.order(created_at: "DESC")
-  end 
+  end
 
   def update
     @user = User.find(params[:id])
@@ -63,13 +63,18 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id), alert: "変更に失敗しました"
     end
   end
-  
+
   def search
     @results = @q.result
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to users_path, notice: "ユーザーを削除しました"
+  end
+
   private
-   
+
   def set_q
     @q = User.ransack(params[:q])
   end
