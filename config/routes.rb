@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get 'search'
     end 
   end
-  resources :users,      only:[:index, :show, :update] do
+  resources :users,      only:[:index, :show, :update, :destroy] do
     get 'user_likes'      => 'users#user_likes'
     get 'user_favorites'  => 'users#user_favorites'
     get 'user_followings' => 'users#user_followings'

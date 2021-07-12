@@ -13,9 +13,14 @@
     <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
       <div class="card-header bg-white">
         <div class="row">
-          <div class="col-7">
+          <div class="col-5">
             <%= link_to user_path(user), class: "deco-none" do %>
               <h4 class="text-left"><%= user.user_name %></h4>
+            <% end %>
+          </div>
+          <div class="col-2">
+            <% if current_user.admin? && current_user != user %>
+              <%= link_to "削除", user_path(user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
             <% end %>
           </div>
           <div class="col-5">

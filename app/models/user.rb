@@ -21,10 +21,10 @@ class User < ApplicationRecord
   has_many  :likes,        dependent: :destroy
   has_many  :favorites,    dependent: :destroy
   
-  has_many :relationships
+  has_many :relationships, dependent: :destroy
   has_many :followings,    through: :relationships, source: :follow
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
-  has_many :followers,     through: :reverse_of_relationships, source: :user
+  has_many :followers,     through: :reverse_of_relationships, source: :user, dependent: :destroy
   
   has_many :messages,      dependent: :destroy
   has_many :entries,       dependent: :destroy
