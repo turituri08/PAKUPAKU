@@ -113,13 +113,13 @@ ActiveRecord::Schema.define(version: 2021_07_11_215644) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name", null: false
-    t.string "sex", null: false
-    t.date "birthday", null: false
+    t.string "name"
+    t.string "sex"
+    t.date "birthday"
     t.string "user_name", null: false
     t.text "profile_image_id"
-    t.string "child_gender", null: false
-    t.string "child_age", null: false
+    t.string "child_gender"
+    t.string "child_age"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
