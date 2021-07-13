@@ -1,5 +1,8 @@
 <div class="container" style="padding-bottom: 5rem;">
   <%= render "layouts/nav" %>
   <%= render "layouts/contents_index", contents: @contents %>
+  <div class="col-lg-6 offset-lg-3 mx-auto mt-4">
+    <%= paginate @contents %>
+  </div>
   <%= render "layouts/footer" %>
 </div>

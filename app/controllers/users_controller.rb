@@ -3,12 +3,13 @@ class UsersController < ApplicationController
   before_action :set_q, only: [:index, :search]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(15)
   end
 
   def show
     @user        = User.find(params[:id])
-    @contents    = Content.where(user_id: [@user]).order(created_at: "DESC")
+    contents     = Content.where(user_id: [@user]).page(params[:page]).per(15)
+    @contents    = contents.order(created_at: "DESC")
     @comment_all = Comment.where(content_id: [@content])
     @comment     = Comment.new
     #・DM機能　Entryテーブルからログインしているユーザーとshowページのユーザーを取ってくる
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    @results = @q.result
+    @results = @q.result.page(params[:page]).per(15)
   end
 
   def destroy
