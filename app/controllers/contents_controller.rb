@@ -7,27 +7,32 @@ class ContentsController < ApplicationController
   end
 
   def index
-    @contents = Content.all.order(created_at: "DESC")
+    contents  = Content.page(params[:page]).per(15)
+    @contents = contents.all.order(created_at: "DESC")
     @comment  = Comment.new
   end
 
   def index_age0
-    @contents = Content.where(target_age: "0歳").order(created_at: "DESC")
+    contents = Content.where(target_age: "0歳").page(params[:page]).per(15)
+    @contents = contents.order(created_at: "DESC")
     @comment  = Comment.new
   end
 
   def index_age1
-    @contents = Content.where(target_age: "1歳").order(created_at: "DESC")
+    contents = Content.where(target_age: "1歳").page(params[:page]).per(15)
+    @contents = contents.order(created_at: "DESC")
     @comment  = Comment.new
   end
 
   def index_age2
-    @contents = Content.where(target_age: "2歳").order(created_at: "DESC")
+    contents = Content.where(target_age: "2歳").page(params[:page]).per(15)
+    @contents = contents.order(created_at: "DESC")
     @comment  = Comment.new
   end
 
   def index_age3
-    @contents = Content.where(target_age: "3歳").order(created_at: "DESC")
+    contents = Content.where(target_age: "3歳").page(params[:page]).per(15)
+    @contents = contents.order(created_at: "DESC")
     @comment  = Comment.new
   end
 
@@ -62,7 +67,7 @@ class ContentsController < ApplicationController
   end
   
   def search
-    @results = @q.result
+    @results = @q.result.page(params[:page]).per(15)
     @comment  = Comment.new
   end
 
