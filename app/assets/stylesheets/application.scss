@@ -69,6 +69,25 @@ h2 span {
   color: #ff4500;
 }
 
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {          
+  border: none;
+  color: grey;
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;
+  border-radius: 50%;
+}
+
+.pagination>li>a:hover {        
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 490px) {
 	body {
 	  font-size: 80%;

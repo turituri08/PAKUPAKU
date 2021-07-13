@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-   # callback for google
+   
   def google_oauth2
     callback_for(:google)
   end
 
-  # common callback method
   def callback_for(provider)
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
@@ -17,5 +16,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
+
 
 end

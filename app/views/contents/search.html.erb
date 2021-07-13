@@ -16,6 +16,7 @@
           </div>
         </div>
       </div>
+        <% if content.content_images.present? %>
         <div class="slider">
           <% content.content_images.each do |image| %>
             <%= link_to content_path(content.id) do %>
@@ -23,9 +24,10 @@
             <% end %>
           <% end %>
         </div>
+      <% end %>
       <div class="card-body pt-0">
         <div class="row">
-          <div class="col-lg-4 offset-lg-8 form-inline">
+          <div class="col-lg-4 offset-lg-8 form-inline pt-2">
             <%= render "layouts/like", content: content %>
             <%= render "layouts/favorite", content: content %>
           </div>
@@ -38,5 +40,8 @@
       </div>
     </div>
   <% end %>
+  <div class="col-lg-6 offset-lg-3 mx-auto mt-4">
+    <%= paginate @results %>
+  </div>
   <%= render "layouts/footer" %>
 </div>
