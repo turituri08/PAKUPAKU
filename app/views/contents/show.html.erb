@@ -18,7 +18,7 @@
             <h5 class="dropdown-toggle" data-toggle="dropdown"></h5>
             <div class="dropdown-menu bg-light">
               <div class="btn btn-outline-info mt-2 ml-3" data-toggle="modal" data-target="#content-edit-modal">編集</div>
-              <%= link_to "削除", content_path(@content), method: :delete, data: { confirm: "本当に削除しますか？" } class: "btn btn-outline-danger mt-2" %>
+              <%= link_to "削除", content_path(@content), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger mt-2" %>
             </div>
           </div>
         <% end %>
@@ -40,8 +40,12 @@
           <div class="text-black-50 text-left">コメント件数：<%= @comment_all.count %></div>
         </div>
         <div class="col-lg-4 form-inline pt-2">
-          <%= render "layouts/like", content: @content %>
-          <%= render "layouts/favorite", content: @content %>
+          <div id='like-button_<%= @content.id %>'>
+            <%= render "layouts/like", content: @content %>
+          </div>
+          <div id='favorite-button_<%= @content.id %>'>
+            <%= render "layouts/favorite", content: @content %>
+          </div>
         </div>
         <div class="col-12">
           <p class="card-text border-bottom"><%= @content.body %></p>

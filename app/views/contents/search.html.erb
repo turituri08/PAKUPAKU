@@ -28,8 +28,12 @@
       <div class="card-body pt-0">
         <div class="row">
           <div class="col-lg-4 offset-lg-8 form-inline pt-2">
+            <div id='like-button_<%= content.id %>'>
             <%= render "layouts/like", content: content %>
+          </div>
+          <div id='favorite-button_<%= content.id %>'>
             <%= render "layouts/favorite", content: content %>
+          </div>
           </div>
           <div class="col-12">
             <p class="card-text border-bottom"><%= content.body %></p>
