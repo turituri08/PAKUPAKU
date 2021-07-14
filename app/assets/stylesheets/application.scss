@@ -88,19 +88,19 @@ h2 span {
   border-radius: 50%;
 }
 
-.auth {
-  position: relative;
-}
-.auth .active {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transition: 0.4s;
-}
-.auth:hover .active {
-  opacity: 1;
-}
+// .auth {
+//   position: relative;
+// }
+// .auth .active {
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   opacity: 0;
+//   transition: 0.4s;
+// }
+// .auth:hover .active {
+//   opacity: 1;
+// }
 
 @media screen and (max-width: 490px) {
 	body {

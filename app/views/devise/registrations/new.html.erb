@@ -4,7 +4,7 @@
     <p class="mt-2">PAKUPAKUご利用にあたり下記情報のご登録をお願いいたします</p>
     <%= render "devise/shared/links" %>
   </div>
-
+  
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -104,4 +104,5 @@
       </div>
     </div>
   <% end %>
+  
 </div>
