@@ -27,7 +27,7 @@ h2 span {
 }
 
 .decoration-none {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .liked {
@@ -40,7 +40,7 @@ h2 span {
 
 .deco-none {
   color: black;
-  text-decoration: none;   
+  text-decoration: none;
 }
 
 .deco-none:hover {
@@ -73,19 +73,33 @@ h2 span {
   justify-content: center;
 }
 
-.pagination>li>a {          
+.pagination>li>a {
   border: none;
   color: grey;
 }
 
 /* 表示しているページ番号のデザイン */
-.pagination>.active>a {     
+.pagination>.active>a {
   background: #93c9ff;
   border-radius: 50%;
 }
 
-.pagination>li>a:hover {        
+.pagination>li>a:hover {
   border-radius: 50%;
+}
+
+.auth {
+  position: relative;
+}
+.auth .active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: 0.4s;
+}
+.auth:hover .active {
+  opacity: 1;
 }
 
 @media screen and (max-width: 490px) {
