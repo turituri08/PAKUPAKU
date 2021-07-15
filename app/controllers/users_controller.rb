@@ -40,12 +40,14 @@ class UsersController < ApplicationController
     @user        = User.find(params[:user_id])
     @contents    = @user.likes.order(created_at: 'DESC')
     @comment_all = Comment.where(content_id: [@contents])
+    @comment     = Comment.new
   end
 
   def user_favorites
     @user        = User.find(params[:user_id])
     @contents    = @user.favorites.order(created_at: 'DESC')
     @comment_all = Comment.where(content_id: [@contents])
+    @comment     = Comment.new
   end
 
   def user_followings

@@ -8,7 +8,9 @@
           <% end %>
         </div>
         <div class="col-5 text-left font-weight-bold">
-          <%= content.user.user_name %>
+          <%= link_to user_path(content.user), class: "deco-none" do %>
+            <%= content.user.user_name %>
+          <% end %>
         </div>
         <div class="col-5 text-right">
           <div class ="text-black-50"><%= content.target_age %>向けの投稿</div>
