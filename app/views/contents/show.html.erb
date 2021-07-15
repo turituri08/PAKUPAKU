@@ -34,12 +34,14 @@
             <% end %>
           </div>
         <% end %>
-    <div class="card-body pt-0">
+        
+    <div class="card-body pt-4">
+      <p class="card-text border-bottom"><%= @content.body %></p>
       <div class="row">
-        <div class="col-lg-8 form-inline pb-2">
-          <div class="text-black-50 text-left">コメント件数：<%= @comment_all.count %></div>
+        <div class="col-4 pt-2">
+          <div class="text-black-50 small"><%= date_format(@content.created_at) %></div>
         </div>
-        <div class="col-lg-4 form-inline pt-2">
+        <div class="col-5 offset-3 form-inline pt-2 text-right">
           <div id='like-button_<%= @content.id %>'>
             <%= render "layouts/like", content: @content %>
           </div>
@@ -47,37 +49,79 @@
             <%= render "layouts/favorite", content: @content %>
           </div>
         </div>
-        <div class="col-12">
-          <p class="card-text border-bottom"><%= @content.body %></p>
-          <p class="text-black-50 small"><%= date_format(@content.created_at) %></p>
-          <%= render "layouts/comment", comment: @comment, content: @content %>
-          <div class="dropdown mt-3">
-          <p class="dropdown-toggle" data-toggle="dropdown">コメントを表示</p>
-            <div class="dropdown-menu p-4 bg-light">
-              <% if @comment_all.count == 0 %>
-                コメントはまだありません
-              <% else %>
-                <ul class="list-unstyled">
-                  <% @comment_all.each do |comment| %>
-                    <li class="border-bottom mt-2">
-                      <%= attachment_image_tag comment.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", class:"rounded-circle"; %>
-                      <%= link_to user_path(comment.user), class: "deco-none pr-3" do %>
-                        <%= comment.user.user_name %>
-                      <% end %>
-                      <%= comment.comment %>
-                      <% if comment.user == current_user %>
-                        <div class="text-right">
-                          <%= link_to "削除", content_comment_path(comment.content_id, comment), method: :delete %>
-                        </div>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div>
-          </div>
+      </div>
+      <%= render "layouts/comment", comment: @comment, content: @content %>
+      <div class="row">
+        <div class="col-4">
+          <div class="mt-3 small text-black-50"><%= @comment_all.count %> 件コメント</div>
+        </div>
+        <div class="col-6">
+          <h6 class="mt-3 small text-black-50 text-left" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
         </div>
       </div>
+      
+      <% @comment_all.first(2).each do |comment| %>
+        <div class="border-bottom small pt-2 pb-2">
+          <% unless comment.id.nil? %>
+            <div class="form-inline">
+              <div class="col-2">
+                <%= attachment_image_tag comment.user, :profile_image, :fill, 32, 32, fallback: "no_image.png", class:"rounded-circle"; %>
+              </div>
+              <div class="col-4">
+                <%= link_to user_path(comment.user), class: "deco-none pr-3" do %>
+                  <%= comment.user.user_name %>
+                <% end %>
+              </div>
+              <div class="col-1 text-right">
+                <% if comment.user == current_user %>
+                  <%= link_to content_comment_path(comment.content_id, comment), method: :delete, remote: true, class: "comment_destroy" do %>
+                    <i class="fas fa-trash" style="color: black;"></i>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="col-4 text-black-50">
+                <%= date_format(comment.created_at) %>
+              </div>
+              <div class="col-10 offset-2">
+                <%= comment.comment %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+        
+      <div class="collapse" id="collapseExample">
+        <% @comment_all.offset(2).each do |comment| %>
+          <div class="border-bottom small pt-2 pb-2">
+            <% unless comment.id.nil? %>
+              <div class="form-inline">
+                <div class="col-2">
+                  <%= attachment_image_tag comment.user, :profile_image, :fill, 32, 32, fallback: "no_image.png", class:"rounded-circle"; %>
+                </div>
+                <div class="col-4">
+                  <%= link_to user_path(comment.user), class: "deco-none pr-3" do %>
+                    <%= comment.user.user_name %>
+                  <% end %>
+                </div>
+                <div class="col-1 text-right">
+                  <% if comment.user == current_user %>
+                    <%= link_to content_comment_path(comment.content_id, comment), method: :delete, remote: true, class: "comment_destroy" do %>
+                      <i class="fas fa-trash" style="color: black;"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col-4 text-black-50">
+                  <%= date_format(comment.created_at) %>
+                </div>
+                <div class="col-10 offset-2">
+                  <%= comment.comment %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      
     </div>
   </div>
   <%= render "layouts/footer" %>
