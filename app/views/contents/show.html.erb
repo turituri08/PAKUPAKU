@@ -40,8 +40,12 @@
           <div class="text-black-50 text-left">コメント件数：<%= @comment_all.count %></div>
         </div>
         <div class="col-lg-4 form-inline pt-2">
-          <%= render "layouts/like", content: @content %>
-          <%= render "layouts/favorite", content: @content %>
+          <div id='like-button_<%= @content.id %>'>
+            <%= render "layouts/like", content: @content %>
+          </div>
+          <div id='favorite-button_<%= @content.id %>'>
+            <%= render "layouts/favorite", content: @content %>
+          </div>
         </div>
         <div class="col-12">
           <p class="card-text border-bottom"><%= @content.body %></p>
