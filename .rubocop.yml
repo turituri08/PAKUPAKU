@@ -1,0 +1,10 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'Gemfile'
+    - 'db/schema.rb'
+    - 'config/routes.rb'
+    
+AsciiComments:
+  Enabled: false

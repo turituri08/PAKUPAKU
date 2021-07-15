@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @content = Content.find(params[:content_id])
     @favorite = current_user.favorites.new(content_id: @content.id)
