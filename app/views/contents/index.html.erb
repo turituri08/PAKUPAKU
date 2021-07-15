@@ -3,7 +3,7 @@
   <%= search_form_for @q, url: search_contents_path do |f| %>
     <div class="row mx-auto mt-3 px-0">
       <div class="col-7 col-lg-5 offset-1 offset-lg-3">
-        <%= f.search_field :body_cont, :placeholder => "キーワード検索", class: "form-control"  %>
+        <%= f.search_field :body_cont, :placeholder => "ワード検索", class: "form-control"  %>
       </div>
       <div class="col-2 col-lg-1">
         <%= f.submit '検索', class: "btn btn-outline-secondary" %>
