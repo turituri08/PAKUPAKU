@@ -12,6 +12,31 @@
           </div>
           
           <div class="form-group row">
+            <label class="col-md-4 col-form-label text-md-right"><%= f.label :性別 %></label>
+            <div class="col-md-6 pt-2">
+              <div class="form-check form-check-inline mr-4">
+                <%= f.radio_button :sex, :"男性" %>
+                <label class="form-check-label">男性</label>
+              </div>
+              <div class="form-check form-check-inline mr-4">
+                <%= f.radio_button :sex, :"女性" %>
+                <label class="form-check-label">女性</label>
+              </div>
+              <div class="form-check form-check-inline mr-4">
+                <%= f.radio_button :sex, :"どちらでもない" %>
+                <label class="form-check-label">どちらでもない</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label text-md-right"><%= f.label :生年月日 %></label>
+            <div class="col-md-6 pt-2">
+              <%= f.date_select :birthday, use_month_numbers: true, start_year: 1950, end_year: (Time.now.year - 15), default: Date.new(1989, 1, 1) %>
+            </div>
+          </div>
+    
+          <div class="form-group row">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :プロフィール画像 %></label>
             <div class="col-md-6">
               <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
