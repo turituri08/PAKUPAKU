@@ -7,7 +7,7 @@
             <%= attachment_image_tag @content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
           <% end %>
         </div>
-        <div class="col-4 text-left">
+        <div class="col-4 text-left font-weight-bold">
           <%= @content.user.user_name %>
         </div>
         <div class="col-5 text-right">
@@ -52,11 +52,11 @@
       </div>
       <%= render "layouts/comment", comment: @comment, content: @content %>
       <div class="row">
-        <div class="col-4">
-          <div class="mt-3 small text-black-50"><%= @comment_all.count %> 件コメント</div>
+        <div class="col-6">
+          <div class="pt-3 small text-black-50"><%= @comment_all.count %> 件コメント</div>
         </div>
         <div class="col-6">
-          <h6 class="mt-3 small text-black-50 text-left" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
+          <h6 class="pt-3 m-0 small text-black-50" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
         </div>
       </div>
       
@@ -67,7 +67,7 @@
               <div class="col-2">
                 <%= attachment_image_tag comment.user, :profile_image, :fill, 32, 32, fallback: "no_image.png", class:"rounded-circle"; %>
               </div>
-              <div class="col-4">
+              <div class="col-4 font-weight-bold">
                 <%= link_to user_path(comment.user), class: "deco-none pr-3" do %>
                   <%= comment.user.user_name %>
                 <% end %>
@@ -98,7 +98,7 @@
                 <div class="col-2">
                   <%= attachment_image_tag comment.user, :profile_image, :fill, 32, 32, fallback: "no_image.png", class:"rounded-circle"; %>
                 </div>
-                <div class="col-4">
+                <div class="col-4 font-weight-bold">
                   <%= link_to user_path(comment.user), class: "deco-none pr-3" do %>
                     <%= comment.user.user_name %>
                   <% end %>

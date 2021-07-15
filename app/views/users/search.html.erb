@@ -4,7 +4,7 @@
       <div class="card-header bg-white">
         <div class="row">
           <div class="col-7">
-            <h4 class="text-left"><%= user.user_name %></h4>
+            <h4 class="text-left "><%= user.user_name %></h4>
           </div>
           <div class="col-5">
             <%= render "layouts/follow", user: user %>
@@ -38,7 +38,7 @@
           <div class="col-3 small text-center">フォロワー</br><%= user.followers.count %></div>
         </div>
           <div class="row p-2">
-            <div class="col-4">
+            <div class="col-4 font-weight-bold">
               <%= link_to user_path(user), class: "deco-none" do %>
                 <%= user.user_name %>
               <% end %>
