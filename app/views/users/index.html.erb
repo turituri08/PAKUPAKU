@@ -28,13 +28,7 @@
           </div>
         </div>
       </div>
-      <% if user.sex == "男性" %>
-        <div class="card-body profile-card-men">
-      <% elsif user.sex == "女性" %>
-        <div class="card-body profile-card-woman">
-      <% else %>
-        <div class="card-body">
-      <% end %>
+      <div class="card-body">
         <div class="row border-bottom">
           <div class="col-3 pb-3">
             <%= link_to user_path(user) do %>
@@ -53,22 +47,22 @@
             <% end %>
           </div>
         </div>
-          <div class="row p-2">
-            <div class="col-4 font-weight-bold">
-              <%= user.user_name %>
-            </div>
-            <div class="col-8">
-              <p class="text-black-50 small"><%= user.created_at.to_s(:datetime_jp) %>から</br>
-              PAKUPAKUを利用しています
-              </p>
-            </div>
+        <div class="row p-2">
+          <div class="col-4 font-weight-bold">
+            <%= user.user_name %>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <%= user.introduction %>
-            </div>
+          <div class="col-8">
+            <p class="text-black-50 small"><%= user.created_at.to_s(:datetime_jp) %>から</br>
+            PAKUPAKUを利用しています
+            </p>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12">
+            <%= user.introduction %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
   <div class="col-lg-6 offset-lg-3 mx-auto mt-4">
