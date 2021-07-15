@@ -9,12 +9,12 @@ class LikesController < ApplicationController
     @like.save
     @content.create_notification_like(current_user)
     # redirect_back(fallback_location: root_path)
-  end 
-  
+  end
+
   def destroy
     @content = Content.find(params[:content_id])
     @like = current_user.likes.find_by(content_id: @content.id)
     @like.destroy
     # redirect_back(fallback_location: root_path)
-  end 
+  end
 end

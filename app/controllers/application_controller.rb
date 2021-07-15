@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: true rubocopの導入後デフォルトで付いた（Ruby3.0からfrozen trueがデフォルトになるので互換性を保つため）
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
