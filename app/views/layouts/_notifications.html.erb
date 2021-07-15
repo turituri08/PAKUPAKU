@@ -7,7 +7,7 @@
         <%= attachment_image_tag visitor, :profile_image, :fill, 30, 30, fallback: "no_image.png", class:"rounded-circle"; %>
       <% end %>
     </div>
-    <div class="col-9">
+    <div class="col-9 font-weight-bold">
       <%= visitor.user_name %>
       さんが
       <% case notification.action %>

@@ -3,7 +3,7 @@
     <div class="card-header bg-white">
       <div class="row">
         <div class="col-5">
-          <h4 class="text-left"><%= @user.user_name %></h4>
+          <h4 class="text-left font-weight-bold"><%= @user.user_name %></h4>
         </div>
         <div class="col-6 text-right">
           <% if @user == current_user %>
@@ -11,7 +11,9 @@
               プロフィールを編集
             </div>
           <% end %>
-          <%= render "layouts/follow", user: @user %>
+          <div id='follow-button_<%= @user.id %>'>
+            <%= render "layouts/follow", user: @user %>
+          </div>
           <%= render "layouts/user_edit" %>
         </div>
           <div class="col-1">
@@ -45,18 +47,20 @@
           </div>
         </div>
         <div class="col-3 small text-center">投稿数</br><%= @user.contents.count %></div>
-        <div class="col-3 small text-center">
-          <%= link_to user_user_followings_path(@user), class: "deco-none" do %>フォロー</br><% end %>
-          <%= @user.followings.count %>
-        </div>
-        <div class="col-3 small text-center">
-          <%= link_to user_user_followers_path(@user), class: "deco-none" do %>フォロワー</br><% end %>
-          <%= @user.followers.count %>
-        </div>
+          <div class="col-3 small text-center">
+            <%= link_to user_user_followings_path(@user), class: "deco-none" do %>
+              フォロー</br><div id="following-count_<%= @user.id %>"><%= @user.followings.count %></div>
+            <% end %>
+          </div>
+          <div class="col-3 small text-center">
+            <%= link_to user_user_followers_path(@user), class: "deco-none" do %>
+              フォロワー</br><div id="follower-count_<%= @user.id %>"><%= @user.followers.count %></div>
+            <% end %>
+          </div>
       </div>
         <div class="row p-2">
           <div class="col-3">
-            <p><%= @user.user_name %></p>
+            <p class="font-weight-bold"><%= @user.user_name %></p>
           </div>
           <div class="col-7">
             <p class="text-black-50 small"><%= @user.created_at.to_s(:datetime_jp) %>から</br>

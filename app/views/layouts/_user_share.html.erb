@@ -1,4 +1,3 @@
-<!-- content.content.◯◯◯◯◯　ってなってるのきもいからいい感じにする？ -->
 <div class="container">
   <%= render "layouts/user_nav" %>
   <% @contents.each do |content| %>
@@ -8,7 +7,7 @@
           <div class="col-2">
             <%= attachment_image_tag content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
           </div>
-          <div class="col-5 text-left">
+          <div class="col-5 text-left font-weight-bold">
             <%= link_to user_path(content.user) do %>
               <%= content.user.user_name %>
             <% end %>
