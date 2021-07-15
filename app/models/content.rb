@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Content < ApplicationRecord
   validates  :user_id,    presence: true
   validates  :body,       presence: true
   validates  :target_age, presence: true
-  
+
   belongs_to :user
   has_many   :content_images, dependent: :destroy
   accepts_attachments_for :content_images, attachment: :image
@@ -10,52 +12,50 @@ class Content < ApplicationRecord
   has_many   :likes,          dependent: :destroy
   has_many   :favorites,      dependent: :destroy
   has_many   :notifications,  dependent: :destroy
-  
-  #user_idが存在する確認
+
+  # user_idが存在する確認
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
-  
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  
-  #いいね通知
+
+  # いいね通知
   def create_notification_like(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and content_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and content_id = ? and action = ? ', current_user.id,
+                               user_id, id, 'like'])
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
         content_id: id,
         visited_id: user_id,
-        action:     'like'
+        action: 'like'
       )
       # 自分の投稿に対するいいねの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
+      notification.checked = true if notification.visitor_id == notification.visited_id
       notification.save if notification.valid?
     end
   end
-  
-  #お気に入り通知
+
+  # お気に入り通知
   def create_notification_favorite(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and content_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and content_id = ? and action = ? ', current_user.id,
+                               user_id, id, 'favorite'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         content_id: id,
         visited_id: user_id,
-        action:     'favorite'
+        action: 'favorite'
       )
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
+      notification.checked = true if notification.visitor_id == notification.visited_id
       notification.save if notification.valid?
     end
   end
-  
-  #コメント通知
+
+  # コメント通知
   def create_notification_comment(current_user, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = Comment.select(:user_id).where(content_id: id).where.not(user_id: current_user.id).distinct
@@ -72,12 +72,10 @@ class Content < ApplicationRecord
       content_id: id,
       comment_id: comment_id,
       visited_id: visited_id,
-      action:     'comment'
+      action: 'comment'
     )
     # 自分の投稿に対するコメントの場合は、通知済みとする
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
+    notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
 end
