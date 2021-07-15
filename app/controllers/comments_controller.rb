@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
@@ -11,7 +13,6 @@ class CommentsController < ApplicationController
     else
       redirect_to contents_path
     end
-
   end
 
   def destroy

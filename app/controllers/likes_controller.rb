@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @content = Content.find(params[:content_id])
     @like = current_user.likes.new(content_id: @content.id)

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only:[:create, :destroy]
+  before_action :set_user, only: %i[create destroy]
 
   def create
     following = current_user.follow(@user)
@@ -26,9 +28,8 @@ class RelationshipsController < ApplicationController
   end
 
   private
-  
+
   def set_user
     @user = User.find(params[:follow_id])
   end
-
 end
