@@ -25,13 +25,8 @@
           </div>
       </div>
     </div>
-    <% if @user.sex == "男性" %>
-      <div class="card-body profile-card-men">
-    <% elsif @user.sex == "女性" %>
-      <div class="card-body profile-card-woman">
-    <% else %>
-      <div class="card-body">
-    <% end %>
+    
+    <div class="card-body">
       <div class="row border-bottom">
         <div class="col-3 pb-3" data-toggle="modal" data-target="#profile-image-modal">
           <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
@@ -86,14 +81,13 @@
             <% end %>
           <% end %>
         </div>
-
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <%= @user.introduction %>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <%= @user.introduction %>
         </div>
       </div>
+    </div>
   </div>
   <%= render "layouts/user_nav" %>
   <%= render "layouts/contents_index", contents: @contents %>

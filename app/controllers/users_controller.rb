@@ -40,12 +40,14 @@ class UsersController < ApplicationController
     @user        = User.find(params[:user_id])
     @contents    = @user.likes.order(created_at: 'DESC')
     @comment_all = Comment.where(content_id: [@contents])
+    @comment     = Comment.new
   end
 
   def user_favorites
     @user        = User.find(params[:user_id])
     @contents    = @user.favorites.order(created_at: 'DESC')
     @comment_all = Comment.where(content_id: [@contents])
+    @comment     = Comment.new
   end
 
   def user_followings
@@ -83,6 +85,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:user_name, :profile_image, :introduction, :child_gender, :child_age)
+    params.require(:user).permit(:user_name, :sex, :birthday, :profile_image, :introduction, :child_gender, :child_age)
   end
 end
