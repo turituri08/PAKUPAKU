@@ -1,27 +1,25 @@
 <div id="home" class="home-image img-fluid top">
-  <div class="container">
+  <div class="container text-center">
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-9 offset-4 Introduction text-center px-0">
-
-        <div class="top-heading">
-          <h3 id="arctext" class="arctext mb-5 mt-4 pt-5" >| Make and enjoy |</h4>
-          <p class="display-2 pt-2 pb-2">PakuPaku</p>
-          <h3 id="arctext-2" class="arctext mt-5 pb-3">Baby Food</h4>
-        </div>
-        <h2 class="mt-5 font-weight-bold">離乳食や幼児食って</h2>
-        <h2 class="font-weight-bold">いつから何を食べさせる？？</h2>
-        <div class="btngroup mt-5">
-          <a href="/users/sign_in" class="btn btn-info font-weight-bold ml-4">ログイン</a>
-          <a href="/users/sign_up" class="btn btn-info font-weight-bold ml-3">アカウント作成</a>
-        </div>
-
-      <% if user_signed_in? %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <%= link_to 'マイページ', user_path(current_user.id) %>
-      <% end %>
+      
+      <div class="col-md-6 offset-md-6 top-heading">
+        <h4 id="arctext" class="arctext mb-5 mt-4 pt-5" >| Make and enjoy |</h4>
+        <h1 class="pt-2">PakuPaku</h1>
+        <h4 id="arctext-2" class="arctext mt-5 pb-3">Baby Food</h4>
       </div>
-    </div>
+      
+      <div class="col-md-6 offset-md-6 top-text">
+        <h3 class="mt-4 font-weight-bold"><span class="text">いつから何を</span><span class="text">食べさせる？？</span></h3>
+        <h6 class="mt-5 font-weight-bold">離乳食や乳児食作りでの<span class="text">悩みを軽減します</span></h6>
+        <h6 class="mt-3 font-weight-bold">他のママやパパとレシピを<span class="text">共有して今日の献立の参考に</span></h6>
+        <h6 class="mb-5 font-weight-bold">子供の大事な時期の<span class="text">離乳食作りを楽しみましょう</span></h6>
+        <h6><a href="/users/sign_up" class="top-btn">アカウント作成</a></h6>
+      </div>
+      
+      <div class="col-md-6 offset-md-6 top-header mt-5">
+        <h6><a href="/users/sign_in" class="footer-btn">ログイン</a></h6>
+      </div>
+    
   </div>
 </div>
 

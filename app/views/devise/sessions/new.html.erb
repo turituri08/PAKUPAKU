@@ -17,20 +17,24 @@
         </div>
       </div>
 
+      <%= render "devise/shared/links" %>
+
       <% if devise_mapping.rememberable? %>
-        <div class="field">
+        <div class="field mt-4">
           <%= f.check_box :remember_me %>
           <%= f.label :remember_me %>
         </div>
       <% end %>
 
-      <div class="actions">
-        <%= f.submit "ログイン", class: "btn btn-info mt-4 mb-4" %>
+      <div class="row mt-4">
+        <div class="col-6 text-center">
+          <a href="/" class="btn btn-outline-secondary">戻る</a>
+        </div>
+        <div class="col-6 text-center">
+          <%= f.submit "ログイン", class: "btn btn-info" %>
+        </div>
       </div>
-
-      <a href="/">トップ画面に戻る</a>
     <% end %>
 
-<%= render "devise/shared/links" %>
   </div>
 </div>

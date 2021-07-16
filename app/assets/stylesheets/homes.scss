@@ -9,6 +9,8 @@
 #home{
   background-image: url("/assets/top_image");
   min-height: 100vh;
+  background-color: rgba(255,255,255,0.4);
+  background-blend-mode: lighten;
  }
 
  .home-image{
@@ -22,5 +24,45 @@
  }
 
  .arctext{
-   opacity: 0.7;
+   opacity: 0.6;
  }
+ 
+ .text{
+   display: inline-block; 
+ }
+
+.top-text{
+  color: #696969;
+}
+
+.footer-btn{
+  color: white;
+  background-color: #d3d3d3;
+  border-radius: 100vh;
+  padding: 18px;
+  padding-left: 65px;
+  padding-right: 65px;
+}
+
+.footer-btn:hover{
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.4s;
+}
+
+.top-btn{
+  color: white;
+  background-color: #f5b1aa;
+  border-radius: 100vh;
+  padding: 18px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.top-btn:hover{
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.4s;
+}
