@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-        <% if @content.content_images.present? || @content.content_images.count != 1 %>
+        <% if content.content_images.present? %>
         <div class="slider">
           <% content.content_images.each do |image| %>
             <%= link_to content_path(content.id) do %>
