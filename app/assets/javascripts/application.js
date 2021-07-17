@@ -19,7 +19,7 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
-  $('.slider').slick({
+  $('.slider').not('.slick-initialized').slick({
       dots: true, //スライドの下にドットのナビゲーションを表示
   });
 });

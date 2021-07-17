@@ -1,16 +1,16 @@
 <div class="modal fade" id="profile-edit-modal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <%= form_with model:@user, local:true do |f| %>
-          
+
           <div class="form-group row mt-5">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :ユーザー名 %></label>
             <div class="col-md-6">
               <%= f.text_field :user_name, autofocus: true, class: "form-control" %>
             </div>
           </div>
-          
+
           <div class="form-group row">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :性別 %></label>
             <div class="col-md-6 pt-2">
@@ -28,28 +28,28 @@
               </div>
             </div>
           </div>
-          
+
           <div class="form-group row">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :生年月日 %></label>
             <div class="col-md-6 pt-2">
               <%= f.date_select :birthday, use_month_numbers: true, start_year: 1950, end_year: (Time.now.year - 15), default: Date.new(1989, 1, 1) %>
             </div>
           </div>
-    
+
           <div class="form-group row">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :プロフィール画像 %></label>
             <div class="col-md-6">
               <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
             </div>
           </div>
-          
+
           <div class="form-group row">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :自己紹介 %></label>
             <div class="col-md-6">
               <%= f.text_area :introduction, autofocus: true, class: "form-control" %>
             </div>
           </div>
-          
+
           <div class="form-group row">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の性別 %></label>
             <div class="col-md-6 pt-2">
@@ -63,20 +63,24 @@
               </div>
             </div>
           </div>
-          
+
           <div class="form-group row">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の年齢 %></label>
             <div class="col-md-6 pt-2">
               <%= f.select :child_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
             </div>
           </div>
-          
-          <div class="actions">
-            <%= f.submit "変更", class: "btn btn-info mt-4 mb-4" %>
+
+          <div class="row">
+            <div class="col-5 offset-1 text-left">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            <div class="col-5">
+              <%= f.submit "変更", class: "btn btn-info mb-4" %>
+            </div>
           </div>
-          
+
         <% end %>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   　   </div>
     </div>
   </div>

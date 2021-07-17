@@ -22,15 +22,20 @@
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の年齢 %></label>
             <div class="col-md-6 pt-2">
               <%= f.select :target_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
+              <small class="form-text">※ 投稿の対象としたいお子様のご年齢を選択してください</small>
             </div>
           </div>
           
-          <div class="actions">
-            <%= f.submit "変更", class: "btn btn-info mt-4 mb-4" %>
+          <div class="row">
+            <div class="col-6 offset-1 text-left">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            <div class="col-4">
+              <%= f.submit "変更", class: "btn btn-info mb-4" %>
+            </div>
           </div>
           
         <% end %>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   　   </div>
     </div>
   </div>
