@@ -21,7 +21,24 @@ body {
   font-family: 'M PLUS 1p', cursive, "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
 }
 
-h2 span {
+.text {
+   display: inline-block;
+ }
+
+ .heading {
+   color: #696969;
+ }
+
+ .bg-style {
+   background-color: #f5f5f5;
+   border-radius: 5px;
+ }
+
+.padding {
+  padding: 30px;
+}
+
+.session-top {
   font-family: -apple-system, 'Chango';
   color: #45859c;
 }
@@ -86,6 +103,16 @@ h2 span {
 
 .pagination>li>a:hover {
   border-radius: 50%;
+}
+
+.new_password {
+  color: #45859c;
+}
+
+.new_password:hover {
+  color: #45859c;
+  opacity: 0.8;
+  text-decoration: none;
 }
 
 // .auth {
