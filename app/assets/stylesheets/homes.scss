@@ -1,0 +1,64 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top{
+  font-family: -apple-system, 'Chango', cursive, "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
+ }
+
+#home{
+  background-image: image-url("/assets/top_image");
+  min-height: 100vh;
+  background-color: rgba(255,255,255,0.4);
+  background-blend-mode: lighten;
+ }
+
+ .home-image{
+  background-size: cover;
+  background-position: bottom;
+  // opacity: 0.8;
+ }
+
+ .top-heading{
+  color: #45859c;
+ }
+
+ .arctext{
+   opacity: 0.6;
+ }
+
+.top-text{
+  color: #696969;
+}
+
+.footer-btn{
+  color: white;
+  background-color: #d3d3d3;
+  border-radius: 100vh;
+  padding: 18px;
+  padding-left: 65px;
+  padding-right: 65px;
+}
+
+.footer-btn:hover{
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.4s;
+}
+
+.top-btn{
+  color: white;
+  background-color: #f5b1aa;
+  border-radius: 100vh;
+  padding: 18px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.top-btn:hover{
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.4s;
+}

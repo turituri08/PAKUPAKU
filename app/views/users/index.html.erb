@@ -1,0 +1,72 @@
+<div class="container" style="padding-bottom: 5rem;">
+  <%= search_form_for @q, url: search_users_path do |f| %>
+    <div class="row mx-auto mt-3 px-0">
+      <div class="col-7 col-lg-5 offset-1 offset-lg-3">
+        <%= f.search_field :user_name_cont, :placeholder => "ユーザー検索", class: "form-control"  %>
+      </div>
+      <div class="col-2 col-lg-1">
+        <%= f.submit '検索', class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  <% end %>
+  <% @users.each do |user| %>
+    <div class="card col-lg-6 offset-lg-3 mx-auto mt-4 px-0">
+      <div class="card-header bg-white">
+        <div class="row">
+          <div class="col-5">
+            <%= link_to user_path(user), class: "deco-none" do %>
+              <h6 class="text-left font-weight-bold"><%= user.user_name %></h6>
+            <% end %>
+          </div>
+          <div class="col-2">
+            <% if current_user.admin? && current_user != user %>
+              <%= link_to "削除", user_path(user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+            <% end %>
+          </div>
+          <div class="col-5" id='follow-button_<%= user.id %>'>
+            <%= render "layouts/follow", user: user %>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters border-bottom">
+          <div class="col-3 pb-3">
+            <%= link_to user_path(user) do %>
+              <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.png", class:"rounded-circle"; %>
+            <% end %>
+          </div>
+          <div class="col-3 small text-center">投稿数</br><%= user.contents.count %></div>
+          <div class="col-3 small text-center">
+            <%= link_to user_user_followings_path(user), class: "deco-none" do %>
+              フォロー</br><div id="following-count_<%= user.id %>"><%= user.followings.count %></div>
+            <% end %>
+          </div>
+          <div class="col-3 small text-center">
+            <%= link_to user_user_followers_path(user), class: "deco-none" do %>
+              フォロワー</br><div id="follower-count_<%= user.id %>"><%= user.followers.count %></div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-4">
+            <%= user.user_name %>
+          </div>
+          <div class="col-8">
+            <p class="text-black-50 small"><%= user.created_at.to_s(:datetime_jp) %>から</br>
+            PAKUPAKUを利用しています
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <%= user.introduction %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-lg-6 offset-lg-3 mx-auto mt-4">
+    <%= paginate @users %>
+  </div>
+  <%= render "layouts/footer" %>
+</div>

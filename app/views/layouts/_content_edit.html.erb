@@ -1,0 +1,42 @@
+<div class="modal fade" id="content-edit-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= form_with model:@content, local:true do |f| %>
+        
+          <div class="form-group row mt-5">
+            <label class="col-md-4 col-form-label text-md-right"><%= f.label :画像 %></label>
+            <div class="col-md-6">
+              <%= f.attachment_field :content_images_images, multiple: true %>
+            </div>
+          </div>
+      
+          <div class="form-group row mt-3">
+            <label class="col-md-4 col-form-label text-md-right"><%= f.label :本文 %></label>
+            <div class="col-md-6">
+              <%= f.text_area :body, class: "form-control" %>
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label text-md-right"><%= f.label :お子様の年齢 %></label>
+            <div class="col-md-6 pt-2">
+              <%= f.select :target_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
+              <small class="form-text">※ 投稿の対象としたいお子様のご年齢を選択してください</small>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-6 offset-1 text-left">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            <div class="col-4">
+              <%= f.submit "変更", class: "btn btn-info mb-4" %>
+            </div>
+          </div>
+          
+        <% end %>
+  　   </div>
+    </div>
+  </div>
+</div>

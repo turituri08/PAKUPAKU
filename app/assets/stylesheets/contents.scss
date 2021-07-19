@@ -1,0 +1,41 @@
+// Place all the styles related to the contents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card-img-top{
+  height: 400px;
+}
+
+.slick-next {
+  right: 20px !important;
+  z-index: 100;
+ }
+
+.slick-prev {
+  left: 20px !important;
+  z-index: 100;
+ }
+ 
+ //.content-new-circle {
+	// 	border-radius: 50% 50% 0 0/100% 100% 0 0;
+	// 	background: rgba(245, 177, 170, 0.2);
+ //}
+ 
+@media screen and (max-width: 490px) {
+	.card-img-top{
+	  height: 300px;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	.card-img-top{
+	  height: 250px;
+	}
+}
+
+@media screen and (max-width: 330px) {
+	.card-img-top{
+	  height: 200px;
+	}
+}
+

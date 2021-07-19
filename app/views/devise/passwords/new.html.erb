@@ -1,0 +1,23 @@
+ <div class="container bg-style">
+  <div class='col-12 mt-4 text-center padding'>   
+    <h2 class="mt-5 heading">パスワードを忘れた場合</h2>
+    <p class="mt-4 heading">ご登録いただいているメールアドレスをご入力後に<span class="text">送信ボタンを押してください</span></br>
+    パスワード再設定用URLが記載されたメールをお送りします</p>
+    
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+    
+      <div class="form-group row mt-4">
+        <div class="col-md-8 offset-md-2">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",:placeholder => "メールアドレス", class: "form-control" %>
+        </div>
+      </div>
+    
+      <div class="actions">
+        <%= f.submit "パスワード再設定メールを送信", class: "btn btn-info mb-3 mt-3" %>
+      </div>
+    <% end %>
+    
+    <a href="/" class="btn btn-outline-secondary mt-4">戻る</a>
+  </div>
+</div>

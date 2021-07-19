@@ -1,0 +1,50 @@
+<div class="container" style="padding-bottom: 5rem;">
+  <div class="col-lg-6 offset-lg-3 mx-auto mt-3 px-0 text-center content-new-circle">
+    <div class="top-heading pt-3">
+      <h3 id="arctext" class="arctext mb-3 font-weight-bold" >| Make and enjoy |</h3>
+      <h1 class="pt-2 pb-2 font-weight-bold">PakuPaku</h1>
+      <h3 id="arctext-2" class="arctext font-weight-bold mt-3 pb-3">Baby Food</h3>
+    </div>
+  </div>
+  <div class="card col-lg-6 offset-lg-3 mx-auto px-0">
+    <div class="card-body pt-0">
+      <%= form_with model: @content, local:true do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+
+        <div class="form-group row mt-5">
+          <label class="col-lg-3 col-form-label text-md-right"><%= f.label :画像 %></label>
+          <div class="col-lg-9">
+            <%= f.attachment_field :content_images_images, multiple: true %>
+          </div>
+        </div>
+
+        <div class="form-group row pt-3 pb-3">
+          <label class="col-lg-3 col-form-label text-md-right"><%= f.label :キャプション %></label>
+          <div class="col-lg-9">
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label text-md-right"><%= f.label :お子様の年齢 %></label>
+          <div class="col-lg-9 pt-2">
+            <%= f.select :target_age, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: 'form-control'} %>
+            <small class="form-text">※ 投稿の対象としたいお子様のご年齢を選択してください</small>
+          </div>
+        </div>
+
+        <div class="actions text-right pr-4">
+          <%= f.submit "投稿", class: "btn btn-info mt-4 mb-4" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
+  <%= render "layouts/footer" %>
+</div>
+
+<script type="text/javascript">
+   $('#arctext').arctext({radius: 300});
+   $('#arctext-2').arctext({radius: 300, dir: -1});
+</script>
