@@ -98,11 +98,11 @@ Rails.application.configure do
     config.action_mailer.default_url_options = { host: 'http://3.113.148.17/'}
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address:"smtp.gmail.com",
+      address: "smtp.gmail.com",
       domain: 'gmail.com',
       port:587,
-      user_name: Rails.application.credentials.gmail[ENV['GOOGLE_USER_NAME']],
-      password: Rails.application.credentials.gmail[ENV['GOOGLE_PASSWORD']],
+      user_name: ENV['GOOGLE_USER_NAME'],
+      password: ENV['GOOGLE_PASSWORD'],
       authentication: :login
     }
   end
