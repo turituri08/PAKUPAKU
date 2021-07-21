@@ -92,7 +92,7 @@ feature 'Sign up' do
           expect(current_path).to eq '/'
           expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
         end
-        it '登録ボタンをクリックすると認証メールが送信される' do
+        it '登録ボタンをクリックすると認証メールが送信され、メール内のリンクをクリックするとログインページに行き、ログインできる' do
           expect{ click_button '登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
           user = User.last
           token = user.confirmation_token
@@ -106,9 +106,11 @@ feature 'Sign up' do
           expect(current_path).to eq '/users/sign_in'
           expect(page).to have_content 'アカウントを登録しました。'
           fill_in 'user[email]', with: user.email
-          fill_in 'user[password]', with: user.password
+          # user.passwordではpasswordはとってこられない。deviseにはもともとpasswordカラムはなくて、あるのはencrypted_passwordという
+          # 暗号化したパスワードを保存するカラム、だからtestではパスワードを使ってログインする時には登録したパスワードと同じパスワードを入力する
+          fill_in 'user[password]', with:'password'
           click_button 'ログイン'
-          expect(current_path).to eq '/user/' + user.id.to_s
+          expect(current_path).to eq '/users/' + user.id.to_s
         end
       end
     end
