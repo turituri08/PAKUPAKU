@@ -31,10 +31,10 @@
         <p class="card-text border-bottom"><%= content.body %></p>
       <% end %>
       <div class="row pt-4">
-        <div class="col-4">
+        <div class="col-6">
           <div class="text-black-50 small"><%= date_format(content.created_at) %></div>
         </div>
-        <div class="col-5 offset-3 form-inline text-right">
+        <div class="col-6 form-inline">
           <div id='like-button_<%= content.id %>'>
             <%= render "layouts/like", content: content %>
           </div>
