@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3 small text-center">投稿</br><%= @user.contents.count %></div>
+        <div class="col-3 small text-center"><a href="#index" class="deco-none">投稿</br><%= @user.contents.count %></a></div>
           <div class="col-3 small text-center">
             <%= link_to user_user_followings_path(@user), class: "deco-none" do %>
               フォロー</br><div id="following-count_<%= @user.id %>"><%= @user.followings.count %></div>
@@ -90,9 +90,22 @@
     </div>
   </div>
   <%= render "layouts/user_nav" %>
-  <%= render "layouts/contents_index", contents: @contents %>
+  <div id="index"><%= render "layouts/contents_index", contents: @contents %></div>
   <div class="col-lg-6 offset-lg-3 mx-auto mt-4">
     <%= paginate @contents %>
   </div>
   <%= render "layouts/footer" %>
 </div>
+
+<script>
+  $(function(){
+  $('a[href^="#"]').click(function(){
+    let speed = 400;
+    let href= $(this).attr("href");
+    let target = $(href == "#" || href == "" ? 'html' : href);
+    let position = target.offset().top;
+    $("html, body").animate({scrollTop:position}, speed, "swing");
+    return false;
+  });
+});
+</script>
