@@ -6,9 +6,9 @@
           <h5 class="text-left font-weight-bold"><%= @user.user_name %></h5>
         </div>
         <% if @user == current_user %>
-          <div class="col-4 text-right">
-            <div class="btn btn-outline-secondary" data-toggle="modal" data-target="#profile-edit-modal">
-              変更
+          <div class="col-4 text-center">
+            <div class="text-black-50 pt-2" data-toggle="modal" data-target="#profile-edit-modal">
+             <h5 class="fas fa-user-edit"></h5>
             </div>
             <%= render "layouts/user_edit" %>
           </div>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="card-body">
       <div class="row no-gutters border-bottom">
         <div class="col-3 pb-3" data-toggle="modal" data-target="#profile-image-modal">
