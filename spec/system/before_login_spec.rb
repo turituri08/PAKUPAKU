@@ -92,30 +92,21 @@ feature 'Sign up' do
           expect(current_path).to eq '/'
           expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
         end
-        it '登録ボタンをクリックすると認証メールが送信され、メール内のリンクをクリックするとログインページに行き、ログインできる' do
+        it '登録ボタンをクリックすると認証メールが送信され、メール内のリンクをクリックするとログインページに行く' do
           expect{ click_button '登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
           user = User.last
           token = user.confirmation_token
           visit user_confirmation_path(confirmation_token: token)
-          ##下記の記述ではuserの情報を渡せていないためsign_inページに行けなかった
-          # mail = ActionMailer::Base.deliveries.last
-          # body = mail.body.encoded
-          # url = body[/http[^"]+/]
-          # visit url
           expect(User.count == 1)
           expect(current_path).to eq '/users/sign_in'
           expect(page).to have_content 'アカウントを登録しました。'
-          fill_in 'user[email]', with: user.email
-          # user.passwordではpasswordはとってこられない。deviseにはもともとpasswordカラムはなくて、あるのはencrypted_passwordという
-          # 暗号化したパスワードを保存するカラム、だからtestではパスワードを使ってログインする時には登録したパスワードと同じパスワードを入力する
-          fill_in 'user[password]', with:'password'
-          click_button 'ログイン'
-          expect(current_path).to eq '/users/' + user.id.to_s
         end
       end
     end
 
     describe 'ユーザーログインのテスト' do
+      
+      let(:user) { create(:user) }
 
       before do
         visit new_user_session_path
@@ -146,6 +137,18 @@ feature 'Sign up' do
           expect(page).to have_link rollback_btn, href: '/'
         end
       end
+      
+      context 'ログイン成功のテスト' do
+        before do
+          fill_in 'user[email]', with: user.email
+          fill_in 'user[password]', with:'password'
+          click_button 'ログイン'
+        end
+        
+        it 'ログインに成功し、ユーザー詳細画面へ遷移する' do
+          expect(current_path).to eq '/users/' + user.id.to_s
+        end 
+      end 
 
       context 'ログイン失敗のテスト' do
         before do
@@ -158,7 +161,6 @@ feature 'Sign up' do
           expect(current_path).to eq '/users/sign_in'
         end
       end
-
     end
 
   end
