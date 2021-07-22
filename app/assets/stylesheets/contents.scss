@@ -4,6 +4,7 @@
 
 .card-img-top{
   height: 400px;
+  object-fit: cover;
 }
 
 .slick-next {
@@ -16,25 +17,23 @@
   z-index: 100;
  }
  
- //.content-new-circle {
-	// 	border-radius: 50% 50% 0 0/100% 100% 0 0;
-	// 	background: rgba(245, 177, 170, 0.2);
- //}
- 
 @media screen and (max-width: 490px) {
 	.card-img-top{
+	  object-fit: cover;
 	  height: 350px;
 	}
 }
 
 @media screen and (max-width: 440px) {
 	.card-img-top{
+	  object-fit: cover;
 	  height: 320px;
 	}
 }
 
 @media screen and (max-width: 330px) {
 	.card-img-top{
+	  object-fit: cover;
 	  height: 290px;
 	}
 }
