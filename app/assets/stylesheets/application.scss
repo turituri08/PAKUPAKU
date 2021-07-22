@@ -21,16 +21,6 @@ body {
   font-family: 'M PLUS 1p', cursive, "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
 }
 
-* {
-	float: none;
-	position: static;
-}
- 
-img {
-	max-width: 100%;
-	height: auto;
-}
-
 .text {
    display: inline-block;
  }
@@ -141,18 +131,18 @@ img {
 
 @media screen and (max-width: 490px) {
 	body {
-	  font-size: 80%;
+	  font-size: 85%;
 	}
 }
 
 @media screen and (max-width: 440px) {
 	body {
-	  font-size: 75%;
+	  font-size: 80%;
 	}
 }
 
 @media screen and (max-width: 340px) {
 	body {
-	  font-size: 70%;
+	  font-size: 75%;
 	}
 }
