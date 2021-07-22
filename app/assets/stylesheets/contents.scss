@@ -19,22 +19,22 @@
  
 @media screen and (max-width: 490px) {
 	.card-img-top{
-	  height: 320px;
 	  object-fit: cover;
+	  height: 350px;
 	}
 }
 
 @media screen and (max-width: 440px) {
 	.card-img-top{
-	  height: 290px;
 	  object-fit: cover;
+	  height: 320px;
 	}
 }
 
 @media screen and (max-width: 330px) {
 	.card-img-top{
-	  height: 250px;
 	  object-fit: cover;
+	  height: 290px;
 	}
 }
 
