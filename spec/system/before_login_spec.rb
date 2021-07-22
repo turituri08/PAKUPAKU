@@ -100,6 +100,11 @@ feature 'Sign up' do
           expect(User.count == 1)
           expect(current_path).to eq '/users/sign_in'
           expect(page).to have_content 'アカウントを登録しました。'
+          visit new_user_session_path
+          fill_in 'user[email]', with: user.email
+          fill_in 'user[password]', with: 'password'
+          click_button 'ログイン'
+          expect(current_path).to eq '/users/' + user.id.to_s
         end
       end
     end
@@ -141,7 +146,7 @@ feature 'Sign up' do
       context 'ログイン成功のテスト' do
         before do
           fill_in 'user[email]', with: user.email
-          fill_in 'user[password]', with:'password'
+          fill_in 'user[password]', with: 'password'
           click_button 'ログイン'
         end
         

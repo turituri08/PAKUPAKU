@@ -1,5 +1,7 @@
 {
   "name": "pakupaku",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "object-fit-images": "^3.2.4"
+  }
 }
