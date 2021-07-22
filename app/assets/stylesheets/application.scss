@@ -21,6 +21,16 @@ body {
   font-family: 'M PLUS 1p', cursive, "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
 }
 
+* {
+	float: none;
+	position: static;
+}
+ 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 .text {
    display: inline-block;
  }
