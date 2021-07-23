@@ -92,7 +92,7 @@ feature 'Sign up' do
           expect(current_path).to eq '/'
           expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
         end
-        it '登録ボタンをクリックすると認証メールが送信され、メール内のリンクをクリックするとログインページに行く' do
+        it '登録ボタンをクリックすると認証メールが送信され、メール内のリンクをクリックするとログインページに行き、ログインするとユーザー詳細ページへ' do
           expect{ click_button '登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
           user = User.last
           token = user.confirmation_token
@@ -110,8 +110,6 @@ feature 'Sign up' do
     end
 
     describe 'ユーザーログインのテスト' do
-      
-      let(:user) { create(:user) }
 
       before do
         visit new_user_session_path
@@ -142,18 +140,6 @@ feature 'Sign up' do
           expect(page).to have_link rollback_btn, href: '/'
         end
       end
-      
-      context 'ログイン成功のテスト' do
-        before do
-          fill_in 'user[email]', with: user.email
-          fill_in 'user[password]', with: 'password'
-          click_button 'ログイン'
-        end
-        
-        it 'ログインに成功し、ユーザー詳細画面へ遷移する' do
-          expect(current_path).to eq '/users/' + user.id.to_s
-        end 
-      end 
 
       context 'ログイン失敗のテスト' do
         before do
