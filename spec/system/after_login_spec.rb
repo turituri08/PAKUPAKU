@@ -26,10 +26,13 @@ describe 'ログイン後のテスト' do
   end 
   
   it do
+    user = User.last
     expect(current_path).to eq '/users/' + user.id.to_s
+    notifications_link = find('h3.fa-bell')
+    expect(notifications_link).to be_present
   end 
  
-  #   notifications_link = find_all('a')[-1].native.inner_text
+  
   
     # context 'フッターの表示内容の確認' do
       # it '新規投稿リンクが表示される' do
