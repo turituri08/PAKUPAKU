@@ -48,11 +48,11 @@ body {
 }
 
 .liked {
-  color: red;
+  color: #f5b1aa;
 }
 
 .favorited {
-  color: #ffd700;
+  color: #fbd26b;
 }
 
 .deco-none {
@@ -131,18 +131,18 @@ body {
 
 @media screen and (max-width: 490px) {
 	body {
-	  font-size: 80%;
+	  font-size: 85%;
 	}
 }
 
 @media screen and (max-width: 440px) {
 	body {
-	  font-size: 75%;
+	  font-size: 80%;
 	}
 }
 
 @media screen and (max-width: 340px) {
 	body {
-	  font-size: 70%;
+	  font-size: 75%;
 	}
 }
