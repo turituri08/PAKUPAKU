@@ -115,6 +115,10 @@ body {
   text-decoration: none;
 }
 
+.slick-dots > li:first-child:last-child {
+    display: none;
+}
+
 // .auth {
 //   position: relative;
 // }
