@@ -36,15 +36,17 @@
     <div class="card-body pt-4">
       <p class="card-text border-bottom"><%= @content.body %></p>
       <div class="row pt-2">
-        <div class="col-6">
+        <div class="col-4">
           <div class="text-black-50 small"><%= date_format(@content.created_at) %></div>
         </div>
-        <div class="col-6 form-inline">
-          <div id='like-button_<%= @content.id %>'>
+        <div class="col-8">
+          <div class="row">
+            <div id='like-button_<%= @content.id %>' class="col-6 text-right">
             <%= render "layouts/like", content: @content %>
-          </div>
-          <div id='favorite-button_<%= @content.id %>'>
-            <%= render "layouts/favorite", content: @content %>
+            </div>
+            <div id='favorite-button_<%= @content.id %>' class="col-6">
+              <%= render "layouts/favorite", content: @content %>
+            </div>
           </div>
         </div>
       </div>
