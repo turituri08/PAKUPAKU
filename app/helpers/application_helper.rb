@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  
+
   def default_meta_tags
     {
       site: 'PAKUPAKU',
@@ -18,7 +18,7 @@ module ApplicationHelper
       og: {
         site_name: 'PAKUPAKU',
         title: 'PAKUPAKU',
-        description: '離乳食や乳児食のレシピ共有SNS', 
+        description: '離乳食や乳児食のレシピ共有SNS',
         type: 'website',
         url: request.original_url,
         image: image_url('og_image.jpeg'),
@@ -30,9 +30,9 @@ module ApplicationHelper
       }
     }
   end
-  
+
   def date_format(datetime)
     "#{time_ago_in_words(datetime)}前"
   end
-  
-end 
+
+end
