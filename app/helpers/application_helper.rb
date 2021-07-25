@@ -21,7 +21,7 @@ module ApplicationHelper
         description: '離乳食や乳児食のレシピ共有SNS', 
         type: 'website',
         url: request.original_url,
-        image: image_url('top_image.jpeg'),
+        image: image_url('og_image.jpeg'),
         locale: 'ja_JP',
       },
       twitter: {
