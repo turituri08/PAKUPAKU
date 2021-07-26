@@ -80,6 +80,7 @@ gem 'faker'
 gem 'rubocop'
 gem 'rubocop-rails'
 gem 'premailer-rails'
+gem 'meta-tags'
 
 group :production do
   gem 'mysql2'

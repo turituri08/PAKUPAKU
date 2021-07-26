@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom: 5rem;">
   <%= render "layouts/user_nav" %>
   <% @contents.each do |content| %>
     <div class="card col-lg-6 offset-lg-3 mx-auto px-0 mt-3">
@@ -34,14 +34,16 @@
           <div class="col-4">
             <div class="text-black-50 small"><%= date_format(content.created_at) %></div>
           </div>
-          <div class="col-5 offset-3 form-inline text-right">
-            <div id='like-button_<%= content.content.id %>'>
-              <%= render "layouts/like", content: content.content %>
+          <div class="col-8">
+          <div class="row">
+            <div id='like-button_<%= content.id %>' class="col-6 text-right">
+            <%= render "layouts/like", content: content.content %>
             </div>
-            <div id='favorite-button_<%= content.content.id %>'>
+            <div id='favorite-button_<%= content.id %>' class="col-6">
               <%= render "layouts/favorite", content: content.content %>
             </div>
           </div>
+        </div>
         </div>
         <%= render "layouts/comment", comment: @comment, content: content.content %>
       </div>
