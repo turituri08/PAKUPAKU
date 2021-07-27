@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .top{
-//   font-family: -apple-system, 'Chango', cursive, "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
  }
 
 #home{
@@ -28,6 +28,7 @@
  }
 
 .top-text{
+  // color: #474a4d;
   color: #696969;
 }
 
@@ -65,6 +66,6 @@
 
 @media screen and (max-width: 440px) {
 	#home {
-	  background-color: rgba(255,255,255,0.6);
+	  background-color: rgba(255,255,255,0.7);
 	}
 }
