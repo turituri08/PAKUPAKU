@@ -24,7 +24,7 @@ describe 'ログイン後のテスト' do
     fill_in 'user[password]', with: 'password'
     click_button 'ログイン'
   end
-  
+
   let(:user) { User.last }
 
   it 'ログイン後の画面が自身のユーザ詳細ページである'do
@@ -82,16 +82,16 @@ describe 'ログイン後のテスト' do
     end
   end
 
-  context 'ユーザー詳細ページの表示内容の確認' do 
+  context 'ユーザー詳細ページの表示内容の確認' do
     it 'フォローしているユーザー一覧ページへのリンクが存在する' do
       expect(page).to have_link 'フォロー', href: '/users/' + user.id.to_s + '/user_followings'
-    end 
+    end
     it 'フォロワー一覧ページへのリンクが存在する' do
       expect(page).to have_link 'フォロワー', href: '/users/' + user.id.to_s + '/user_followers'
-    end 
+    end
     it '投稿一覧のリンクが存在する' do
       expect(page).to have_link '投稿', href: '/users/' + user.id.to_s
-    end 
+    end
     it 'いいね一覧のリンクが存在する' do
       expect(page).to have_link 'いいね', href: '/users/' + user.id.to_s + '/user_likes'
     end
@@ -99,58 +99,51 @@ describe 'ログイン後のテスト' do
       expect(page).to have_link 'お気に入り', href: '/users/' + user.id.to_s + '/user_favorites'
     end
   end
-  
+
   context '投稿成功のテスト' do
     before do
       visit new_content_path
       fill_in 'content[body]', with: '本文'
       attach_file "content[content_images_images][]", "app/assets/images/logo.jpg"
       select '1歳', from: 'content[target_age]'
-      # click_button '投稿'
-      # binding.pry
-    end 
-    
-    it 'urlが正しい' do 
+    end
+
+    it 'urlが正しい' do
       expect(current_path).to eq '/contents/new'
-    end 
+    end
     it '投稿が正しく保存される' do
       expect { click_button '投稿' }.to change(user.contents, :count).by(1)
-    end 
+    end
     it 'リダイレクト先のurlが正しい' do
       click_button '投稿'
       expect(current_path).to eq "/contents"
-    end 
+    end
     it '投稿内容が正しく表示されている' do
       click_button '投稿'
       expect(page).to have_text '本文'
       expect(page).to have_selector("img")
       expect(page).to have_text '1歳向けの投稿'
-    end 
+    end
     it '投稿一覧に投稿詳細画面へのurlが存在する' do
       click_button '投稿'
       content = Content.last
       expect(page).to have_link '', href: '/contents/' + content.id.to_s
-    end 
-    
+    end
+
     context '投稿詳細画面のテスト' do
-      
+
       before do
         click_button '投稿'
-      end 
-      
+      end
+
       let(:content) { Content.last }
-      
-      it 'urlが正しい' do 
-        # show_link = find('div.slider')
-        # show_link.click
-        # find("a[href='/contents/'#{content.id.to_s}]").click
-        expect(current_path).to eq '/contents/' + content.id.to_s
-      end 
-      
-    end 
-  end 
+
+      it 'urlが正しい' do
+        content = Content.last
+        expect(page).to have_link '', href: '/contents/' + content.id.to_s
+      end
+
+    end
+  end
 
 end
-
-#画像が正しく投稿されていないかdiv sliderで取れていない？
-#findでaタグを取ってくることは、式展開をする必要がある記述でもうまくいく？
