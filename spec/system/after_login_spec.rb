@@ -148,9 +148,9 @@ describe 'ログイン後のテスト' do
         expect(page).to have_text '1歳向けの投稿'
       end
       it 'いつ投稿された投稿かが表示されている' do
-        content.update(created_at: "2021-07-21 02:01:00")
+        # content.update(created_at: "2021-07-21 02:01:00")
         visit current_path
-        expect(page).to have_text '8日前'
+        expect(page).to have_text '1分前'
       end
       it 'いいねボタンが表示されている' do
         like_button = find('h5.fa-heart')
