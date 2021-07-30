@@ -3,11 +3,10 @@
 require 'rails_helper'
 
 describe 'ログイン後のテスト' do
-
   before do
     visit new_user_registration_path
     fill_in 'user[name]', with: '田中'
-    choose 'user[sex]',  with: '男性'
+    choose 'user[sex]', with: '男性'
     fill_in 'user[email]', with: 'hoge@example.com'
     # select 'user[birthday]', from: '1989-01-01'
     fill_in 'user[user_name]', with: 'tanaka'
@@ -27,7 +26,7 @@ describe 'ログイン後のテスト' do
 
   let(:user) { User.last }
 
-  it 'ログイン後の画面が自身のユーザ詳細ページである'do
+  it 'ログイン後の画面が自身のユーザ詳細ページである' do
     expect(current_path).to eq '/users/' + user.id.to_s
   end
   it 'ログアウトアイコンが存在する' do
@@ -104,7 +103,7 @@ describe 'ログイン後のテスト' do
     before do
       visit new_content_path
       fill_in 'content[body]', with: '本文'
-      attach_file "content[content_images_images][]", "app/assets/images/logo.jpg"
+      attach_file 'content[content_images_images][]', 'app/assets/images/logo.jpg'
       select '1歳', from: 'content[target_age]'
     end
 
@@ -116,12 +115,12 @@ describe 'ログイン後のテスト' do
     end
     it 'リダイレクト先のurlが正しい' do
       click_button '投稿'
-      expect(current_path).to eq "/contents"
+      expect(current_path).to eq '/contents'
     end
     it '投稿内容が正しく表示されている' do
       click_button '投稿'
       expect(page).to have_text '本文'
-      expect(page).to have_selector("img")
+      expect(page).to have_selector('img')
       expect(page).to have_text '1歳向けの投稿'
     end
     it '投稿一覧に投稿詳細画面へのurlが存在する' do
@@ -131,7 +130,6 @@ describe 'ログイン後のテスト' do
     end
 
     context '投稿詳細画面のテスト' do
-
       before do
         click_button '投稿'
       end
@@ -142,8 +140,6 @@ describe 'ログイン後のテスト' do
         content = Content.last
         expect(page).to have_link '', href: '/contents/' + content.id.to_s
       end
-
     end
   end
-
 end

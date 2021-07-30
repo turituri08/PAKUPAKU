@@ -10,9 +10,9 @@ class RelationshipsController < ApplicationController
       @user.create_notification_follow(current_user)
       # flash[:success] = 'ユーザーをフォローしました'
       # redirect_back(fallback_location: root_path)
-    # else
-    #   flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-    #   redirect_back(fallback_location: root_path)
+      # else
+      #   flash.now[:alert] = 'ユーザーのフォローに失敗しました'
+      #   redirect_back(fallback_location: root_path)
     end
   end
 
@@ -21,9 +21,9 @@ class RelationshipsController < ApplicationController
     if following.destroy
       # flash[:success] = 'ユーザーのフォローを解除しました'
       # redirect_back(fallback_location: root_path)
-    # else
-    #   flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
-    #   redirect_back(fallback_location: root_path)
+      # else
+      #   flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
+      #   redirect_back(fallback_location: root_path)
     end
   end
 

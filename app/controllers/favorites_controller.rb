@@ -9,12 +9,12 @@ class FavoritesController < ApplicationController
     @favorite.save
     @content.create_notification_favorite(current_user)
     # redirect_back(fallback_location: root_path)
-  end 
-  
+  end
+
   def destroy
     @content = Content.find(params[:content_id])
     @favorite = current_user.favorites.find_by(content_id: @content.id)
     @favorite.destroy
     # redirect_back(fallback_location: root_path)
-  end 
+  end
 end
