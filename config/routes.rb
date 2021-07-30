@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
+  get      'users/terms'          => 'users#terms',         as: 'terms'
   get      '/contents/index_age0' => 'contents#index_age0', as: 'contents_age0'
   get      '/contents/index_age1' => 'contents#index_age1', as: 'contents_age1'
   get      '/contents/index_age2' => 'contents#index_age2', as: 'contents_age2'
