@@ -58,7 +58,9 @@
           <div class="col-4 pr-0">
             <p><%= @user.user_name %>
             <% if @user == current_user %>
-              <br><span class="text-black-50 small"><i class="far fa-list-alt" data-toggle="tooltip" data-placement="bottom" title="利用規約"></i></span>
+              <%= link_to terms_path do %>
+                <br><span class="text-black-50 small"><i class="far fa-list-alt"></i></span>
+              <% end %>
             <% end %>
             </p>
           </div>
