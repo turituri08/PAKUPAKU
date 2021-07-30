@@ -7,21 +7,21 @@
             <%= attachment_image_tag @content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
           <% end %>
         </div>
-        <div class="col-3 text-left font-weight-bold">
+        <div class="col-5 text-left font-weight-bold">
           <%= @content.user.user_name %>
         </div>
         <div class="col-5 text-right">
           <div class ="text-black-50"><%= @content.target_age %>向けの投稿</div>
-        </div>
-        <% if @content.user_id == current_user.id %>
-          <div class="dropdown col-2">
-            <h5 class="dropdown-toggle" data-toggle="dropdown"></h5>
-            <div class="dropdown-menu dropdown-menu-right bg-light">
-              <div class="btn btn-outline-info ml-3" data-toggle="modal" data-target="#content-edit-modal">編集</div>
-              <%= link_to "削除", content_path(@content), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger ml-1" %>
+          <% if @content.user_id == current_user.id %>
+            <div class="dropdown">
+              <h5 class="dropdown-toggle" data-toggle="dropdown"></h5>
+              <div class="dropdown-menu dropdown-menu-right bg-light">
+                <div class="btn btn-outline-info ml-3" data-toggle="modal" data-target="#content-edit-modal">編集</div>
+                <%= link_to "削除", content_path(@content), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger ml-1" %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
         <%= render "layouts/content_edit" %>
       </div>
     </div>
