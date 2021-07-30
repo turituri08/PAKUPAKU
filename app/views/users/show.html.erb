@@ -28,7 +28,7 @@
 
     <div class="card-body">
       <div class="row no-gutters border-bottom">
-        <div class="col-3 pb-3" data-toggle="modal" data-target="#profile-image-modal">
+        <div class="col-3 pb-2" data-toggle="modal" data-target="#profile-image-modal">
           <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png", class:"rounded-circle"; %>
         </div>
         <div class="modal fade" id="profile-image-modal" tabindex="-1">
@@ -53,19 +53,23 @@
             <% end %>
           </div>
       </div>
-        <div class="row p-2">
-          
-          <div class="col-4">
-            <p><%= @user.user_name %></p>
+        <div class="row pt-2">
+
+          <div class="col-4 pr-0">
+            <p><%= @user.user_name %>
+            <% if @user == current_user %>
+              <br><span class="text-black-50 small"><i class="far fa-list-alt" data-toggle="tooltip" data-placement="bottom" title="利用規約"></i></span>
+            <% end %>
+            </p>
           </div>
-          
-          <div class="col-6">
+
+          <div class="col-6 pl-2 pr-0">
             <p class="text-black-50 small"><%= @user.created_at.to_s(:datetime_jp) %>から</br>
             PAKUPAKUを利用しています
             </p>
           </div>
 
-          <div class="col-2 pr-2">
+          <div class="col-2 pr-2 pl-0">
           <% unless @user.id == current_user.id %>
             <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
               <% if @isRoom == true %>
@@ -83,7 +87,7 @@
             <% end %>
           <% end %>
         </div>
-        
+
       </div>
       <div class="row">
         <div class="col-12">

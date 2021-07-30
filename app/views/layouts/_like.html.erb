@@ -1,9 +1,9 @@
 <% if content.liked_by?(current_user) %>
-    <%= link_to content_likes_path(content), method: :delete, remote: true, data: {"turbolinks" => false}, class: "deco-none" do %>
+    <%= link_to content_likes_path(content), method: :delete, remote: true, class: "deco-none" do %>
       <h5 class="liked fas fa-heart mr-1 pb-2"></h5><%= content.likes.count %>
     <% end %>
   <% else %>
-    <%= link_to content_likes_path(content), method: :post, remote: true, data: {"turbolinks" => false}, class: "deco-none" do %>
+    <%= link_to content_likes_path(content), method: :post, remote: true, class: "deco-none" do %>
       <h5 class="far fa-heart mr-1 pb-2"></h5><%= content.likes.count %>
     <% end %>
 <% end %>

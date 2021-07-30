@@ -3,16 +3,16 @@
     <h2 class="mt-5 heading"><span class="session-top font-weight-bold">PAKUPAKU</span></br>ログイン</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group row mt-5">
+      <div class="form-group row mt-4">
         <!--<label class="col-md-4 col-form-label text-md-right"><%#= f.label :email %></label>-->
-        <div class="col-md-5 offset-md-4">
+        <div class="col-md-4 offset-md-4">
           <%= f.email_field :email, autocomplete: "email", :placeholder => "メールアドレス", class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group row mt-4">
         <!--<label class="col-md-4 col-form-label text-md-right"><%#= f.label :password %></label>-->
-        <div class="col-md-5 offset-md-4">
+        <div class="col-md-4 offset-md-4">
           <%= f.password_field :password, autocomplete: "current-password", :placeholder => "パスワード", class: "form-control" %>
         </div>
       </div>
