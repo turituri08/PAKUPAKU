@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :user_name,    presence: true
   validates :email,        presence: true,
                            uniqueness: true,
-                           format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
+                           format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 
   has_many  :contents,     dependent: :destroy
   has_many  :comments,     dependent: :destroy
@@ -25,9 +25,9 @@ class User < ApplicationRecord
   has_many :messages,      dependent: :destroy
   has_many :entries,       dependent: :destroy
 
-  #自分からの通知
+  # 自分からの通知
   has_many :active_notifications,  class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
-  #相手からの通知
+  # 相手からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   def liked_by?(user)
@@ -39,22 +39,20 @@ class User < ApplicationRecord
   end
 
   def follow(other_user)
-    unless self == other_user
-      self.relationships.find_or_create_by(follow_id: other_user.id)
-    end
+    relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
   end
 
   def unfollow(other_user)
-    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship = relationships.find_by(follow_id: other_user.id)
     relationship.destroy if relationship
   end
 
   def following?(other_user)
-    self.followings.include?(other_user)
+    followings.include?(other_user)
   end
 
   def create_notification_follow(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and action = ? ', current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
@@ -68,8 +66,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email     = auth.info.email
       user.user_name = auth.info.name
-      user.password  = Devise.friendly_token[0,20]
+      user.password  = Devise.friendly_token[0, 20]
     end
   end
-
 end
