@@ -69,7 +69,8 @@ class ContentsController < ApplicationController
   end
 
   def search
-    @results = @q.result.page(params[:page]).per(15)
+    results = @q.result.page(params[:page]).per(15)
+    @results = results.all.order(created_at: 'DESC')
     @comment = Comment.new
   end
 
