@@ -32,9 +32,9 @@
             <% end %>
           </div>
         <% end %>
-        
+
     <div class="card-body pt-0">
-      <p class="card-text border-bottom"><%= @content.body %></p>
+      <p class="card-text border-bottom"><%= simple_format(@content.body) %></p>
       <div class="row pt-2">
         <div class="col-4">
           <div class="text-black-50 small"><%= date_format(@content.created_at) %></div>
@@ -59,7 +59,7 @@
           <h6 class="pt-3 m-0 small text-black-50" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
         </div>
       </div>
-      
+
       <% @comment_all.first(2).each do |comment| %>
         <div class="border-bottom small pt-2 pb-2">
           <% unless comment.id.nil? %>
@@ -91,7 +91,7 @@
           <% end %>
         </div>
       <% end %>
-        
+
       <div class="collapse" id="collapseExample">
         <% @comment_all.offset(2).each do |comment| %>
           <div class="border-bottom small pt-2 pb-2">
@@ -125,7 +125,7 @@
           </div>
         <% end %>
       </div>
-      
+
     </div>
   </div>
   <%= render "layouts/footer" %>
