@@ -5,14 +5,16 @@ Rails.application.routes.draw do
   get      '/contents/index_age1' => 'contents#index_age1', as: 'contents_age1'
   get      '/contents/index_age2' => 'contents#index_age2', as: 'contents_age2'
   get      '/contents/index_age3' => 'contents#index_age3', as: 'contents_age3'
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                                    confirmations:      'users/confirmations'
+                                    }
   resources :contents,   only:[:new, :create, :index, :show, :update, :destroy] do
     resource :likes,     only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
     resources :comments, only:[:create, :destroy]
     collection do
       get 'search'
-    end 
+    end
   end
   resources :users,      only:[:index, :show, :update, :destroy] do
     get 'user_likes'      => 'users#user_likes'
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
     get 'user_followers'  => 'users#user_followers'
     collection do
       get 'search'
-    end 
+    end
   end
   resources :relationships, only:[:create, :destroy]
   resources :messages,      only:[:create]
