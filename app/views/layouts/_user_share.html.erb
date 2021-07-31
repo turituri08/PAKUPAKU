@@ -28,7 +28,7 @@
       <% end %>
       <div class="card-body pt-4">
         <%= link_to content_path(content.content.id), class: "deco-none" do %>
-          <p class="card-text border-bottom"><%= simple_format(content.content.body) %></p>
+          <p class="card-text border-bottom"><%= raw Rinku.auto_link(simple_format(content.content.body)) %></p>
         <% end %>
         <div class="row pt-4">
           <div class="col-4">

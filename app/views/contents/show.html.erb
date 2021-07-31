@@ -34,7 +34,7 @@
         <% end %>
 
     <div class="card-body pt-0">
-      <p class="card-text border-bottom"><%= simple_format(@content.body) %></p>
+      <p class="card-text border-bottom"><%= raw Rinku.auto_link(simple_format(@content.body)) %></p>
       <div class="row pt-2">
         <div class="col-4">
           <div class="text-black-50 small"><%= date_format(@content.created_at) %></div>
