@@ -18,10 +18,6 @@ describe 'ログイン後のテスト' do
     user = User.last
     token = user.confirmation_token
     visit user_confirmation_path(confirmation_token: token)
-    visit new_user_session_path
-    fill_in 'user[email]', with: user.email
-    fill_in 'user[password]', with: 'password'
-    click_button 'ログイン'
   end
 
   let(:user) { User.last }
@@ -132,13 +128,66 @@ describe 'ログイン後のテスト' do
     context '投稿詳細画面のテスト' do
       before do
         click_button '投稿'
+        visit content_path(content)
       end
 
       let(:content) { Content.last }
 
-      it 'urlが正しい' do
-        content = Content.last
-        expect(page).to have_link '', href: '/contents/' + content.id.to_s
+      it '投稿詳細画面が表示されている' do
+        expect(current_path).to eq '/contents/' + content.id.to_s
+      end
+      it '投稿内容が正しく表示されている' do
+        expect(page).to have_text '本文'
+        expect(page).to have_selector("img")
+        expect(page).to have_text '1歳向けの投稿'
+      end
+      it 'いつ投稿された投稿かが表示されている' do
+        # content.update(created_at: "2021-07-21 02:01:00")
+        visit current_path
+        expect(page).to have_text '1分前'
+      end
+      it 'いいねボタンが表示されている' do
+        like_button = find('h5.fa-heart')
+        expect(like_button).to be_present
+        expect(page).to have_css "div#like-button_#{ content.id }", text: '0'
+      end
+      # it 'いいねボタンをクリックするといいねされる', js: true do
+      #   find(".like_switch").click
+      #   expect(page).to have_css "like_switch", text: '1'
+      # end
+      it 'お気に入りボタンが表示されている' do
+        favorite_button = find('h5.fa-star')
+        expect(favorite_button).to be_present
+        expect(page).to have_css "div#favorite-button_#{ content.id }", text: '0'
+      end
+      # it 'お気に入りボタンをクリックするとお気に入りされる' do
+      # end
+
+      context 'コメント投稿のテスト' do
+        it 'コメント入力フォームが表示されている' do
+          expect(page).to have_field 'comment[comment]'
+        end
+        it 'コメントの投稿に成功する' do
+          fill_in 'comment[comment]', with: 'コメントのテスト'
+          expect { click_button '送信' }.to change(content.comments, :count).by(1)
+        end
+        it '投稿したコメントが正しく表示されている' do
+          fill_in 'comment[comment]', with: 'コメントのテスト'
+          click_button '送信'
+          expect(page).to have_text 'コメントのテスト'
+        end
+        it 'コメントの件数が表示されている' do
+          fill_in 'comment[comment]', with: 'コメントのテスト'
+          click_button '送信'
+          expect(page).to have_text '1 件コメント'
+        end
+      end
+
+      context '投稿編集のテスト' do
+        it '編集ボタンが表示されている' do
+          expect(page).to have_text '編集'
+        end
+
       end
     end
   end

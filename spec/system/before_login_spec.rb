@@ -97,13 +97,8 @@ feature 'Sign up' do
           token = user.confirmation_token
           visit user_confirmation_path(confirmation_token: token)
           expect(User.count == 1)
-          expect(current_path).to eq '/users/sign_in'
-          expect(page).to have_content 'アカウントを登録しました。'
-          visit new_user_session_path
-          fill_in 'user[email]', with: user.email
-          fill_in 'user[password]', with: 'password'
-          click_button 'ログイン'
           expect(current_path).to eq '/users/' + user.id.to_s
+          expect(page).to have_content 'アカウントを登録しました。'
         end
       end
     end
