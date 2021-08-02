@@ -8,7 +8,6 @@ feature 'Sign up' do
   end
 
   describe 'ログイン前のテスト' do
-
     describe 'top画面のテスト' do
       before do
         visit root_path
@@ -34,7 +33,7 @@ feature 'Sign up' do
         visit new_user_registration_path
       end
 
-      #birthdayのtestの書き方がわからない(f.date_select)
+      # birthdayのtestの書き方がわからない(f.date_select)
       context '表示内容の確認' do
         it 'urlが正しい' do
           expect(current_path).to eq '/users/sign_up'
@@ -78,7 +77,7 @@ feature 'Sign up' do
       context '新規登録のテスト' do
         before do
           fill_in 'user[name]', with: '田中'
-          choose 'user[sex]',  with: '男性'
+          choose 'user[sex]', with: '男性'
           fill_in 'user[email]', with: 'hoge@example.com'
           # select 'user[birthday]', from: '1989-01-01'
           fill_in 'user[user_name]', with: 'tanaka'
@@ -93,24 +92,18 @@ feature 'Sign up' do
           expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
         end
         it '登録ボタンをクリックすると認証メールが送信され、メール内のリンクをクリックするとログインページに行き、ログインするとユーザー詳細ページへ' do
-          expect{ click_button '登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
+          expect { click_button '登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
           user = User.last
           token = user.confirmation_token
           visit user_confirmation_path(confirmation_token: token)
           expect(User.count == 1)
-          expect(current_path).to eq '/users/sign_in'
-          expect(page).to have_content 'アカウントを登録しました。'
-          visit new_user_session_path
-          fill_in 'user[email]', with: user.email
-          fill_in 'user[password]', with: 'password'
-          click_button 'ログイン'
           expect(current_path).to eq '/users/' + user.id.to_s
+          expect(page).to have_content 'アカウントを登録しました。'
         end
       end
     end
 
     describe 'ユーザーログインのテスト' do
-
       before do
         visit new_user_session_path
       end
@@ -119,10 +112,10 @@ feature 'Sign up' do
         it 'urlが正しい' do
           expect(current_path).to eq '/users/sign_in'
         end
-         it 'emailフォームがある' do
+        it 'emailフォームがある' do
           expect(page).to have_field 'user[email]'
         end
-         it 'passwordフォームがある' do
+        it 'passwordフォームがある' do
           expect(page).to have_field 'user[password]'
         end
         it 'ログインボタンが表示される' do
@@ -153,6 +146,5 @@ feature 'Sign up' do
         end
       end
     end
-
   end
 end

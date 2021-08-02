@@ -78,6 +78,8 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: 'ユーザーを削除しました'
   end
 
+  def terms; end
+
   private
 
   def set_q

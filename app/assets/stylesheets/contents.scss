@@ -16,7 +16,7 @@
   left: 20px !important;
   z-index: 100;
  }
- 
+
 @media screen and (max-width: 490px) {
 	.card-img-top{
 	  object-fit: cover;
@@ -35,6 +35,13 @@
 	.card-img-top{
 	  object-fit: cover;
 	  height: 270px;
+	}
+}
+
+@media screen and (max-width: 285px) {
+	.card-img-top{
+	  object-fit: cover;
+	  height: 240px;
 	}
 }
 

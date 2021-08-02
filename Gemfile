@@ -83,6 +83,7 @@ gem 'rubocop'
 gem 'rubocop-rails'
 gem 'premailer-rails'
 gem 'meta-tags'
+gem 'rinku'
 
 group :production do
   gem 'mysql2'

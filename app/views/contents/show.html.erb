@@ -7,21 +7,21 @@
             <%= attachment_image_tag @content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
           <% end %>
         </div>
-        <div class="col-3 text-left font-weight-bold">
+        <div class="col-5 text-left font-weight-bold">
           <%= @content.user.user_name %>
         </div>
         <div class="col-5 text-right">
           <div class ="text-black-50"><%= @content.target_age %>向けの投稿</div>
-        </div>
-        <% if @content.user_id == current_user.id %>
-          <div class="dropdown col-2">
-            <h5 class="dropdown-toggle" data-toggle="dropdown"></h5>
-            <div class="dropdown-menu dropdown-menu-right bg-light">
-              <div class="btn btn-outline-info ml-3" data-toggle="modal" data-target="#content-edit-modal">編集</div>
-              <%= link_to "削除", content_path(@content), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger ml-1" %>
+          <% if @content.user_id == current_user.id %>
+            <div class="dropdown">
+              <h5 class="dropdown-toggle" data-toggle="dropdown"></h5>
+              <div class="dropdown-menu dropdown-menu-right bg-light">
+                <div class="btn btn-outline-info ml-3" data-toggle="modal" data-target="#content-edit-modal">編集</div>
+                <%= link_to "削除", content_path(@content), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger ml-1" %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
         <%= render "layouts/content_edit" %>
       </div>
     </div>
@@ -32,9 +32,9 @@
             <% end %>
           </div>
         <% end %>
-        
-    <div class="card-body pt-4">
-      <p class="card-text border-bottom"><%= @content.body %></p>
+
+    <div class="card-body pt-0">
+      <div class="card-text border-bottom pt-3"><%= raw Rinku.auto_link(simple_format(@content.body)) %></div>
       <div class="row pt-2">
         <div class="col-4">
           <div class="text-black-50 small"><%= date_format(@content.created_at) %></div>
@@ -59,7 +59,7 @@
           <h6 class="pt-3 m-0 small text-black-50" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
         </div>
       </div>
-      
+
       <% @comment_all.first(2).each do |comment| %>
         <div class="border-bottom small pt-2 pb-2">
           <% unless comment.id.nil? %>
@@ -91,7 +91,7 @@
           <% end %>
         </div>
       <% end %>
-        
+
       <div class="collapse" id="collapseExample">
         <% @comment_all.offset(2).each do |comment| %>
           <div class="border-bottom small pt-2 pb-2">
@@ -125,7 +125,7 @@
           </div>
         <% end %>
       </div>
-      
+
     </div>
   </div>
   <%= render "layouts/footer" %>

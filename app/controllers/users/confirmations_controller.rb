@@ -2,6 +2,7 @@
 
 module Users
   class ConfirmationsController < Devise::ConfirmationsController
+    
     # GET /resource/confirmation/new
     # def new
     #   super
@@ -11,11 +12,19 @@ module Users
     # def create
     #   super
     # end
-
+    
+    #メール認証後にそのままログインさせるための記述
+    #これはメールアドレスを間違って登録してしまった時のため、セキュリティ上この設定になっている
     # GET /resource/confirmation?confirmation_token=abcdef
-    # def show
-    #   super
-    # end
+    def show
+      super do
+        sign_in(resource) if resource.errors.empty?
+      end
+    end
+  
+    def after_confirmation_path_for(resource_name, resource)
+      after_sign_in_path_for(resource)
+    end
 
     # protected
 
