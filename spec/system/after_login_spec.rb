@@ -187,8 +187,23 @@ describe 'ログイン後のテスト' do
         it '編集ボタンが表示されている' do
           expect(page).to have_text '編集'
         end
-
+        it '画像編集フォームが存在する' do
+           expect(page).to have_field 'content[content_images_images][]'
+        end 
+        it 'キャプション編集フォームが存在する' do
+           expect(page).to have_field 'content[body]'
+        end 
+        it '対象年齢編集フォームが存在する' do
+           expect(page).to have_field 'content[target_age]'
+        end 
+        it '編集した内容が反映されている' do
+          fill_in 'content[body]', with: '編集のテスト'
+          click_button '変更'
+          expect(page).to have_content '編集のテスト'
+        end 
       end
+      
+      
     end
   end
 end
