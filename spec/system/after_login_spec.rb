@@ -203,6 +203,11 @@ describe 'ログイン後のテスト' do
         end 
       end
       
+      context '投稿削除のテスト' do
+        it '削除ボタンが表示されている' do
+          
+        end 
+      end 
       
     end
   end
