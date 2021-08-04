@@ -142,7 +142,6 @@ describe 'ログイン後のテスト' do
         expect(page).to have_text '1歳向けの投稿'
       end
       it 'いつ投稿された投稿かが表示されている' do
-        # content.update(created_at: "2021-07-21 02:01:00")
         visit current_path
         expect(page).to have_text '1分前'
       end
@@ -189,26 +188,30 @@ describe 'ログイン後のテスト' do
         end
         it '画像編集フォームが存在する' do
            expect(page).to have_field 'content[content_images_images][]'
-        end 
+        end
         it 'キャプション編集フォームが存在する' do
            expect(page).to have_field 'content[body]'
-        end 
+        end
         it '対象年齢編集フォームが存在する' do
            expect(page).to have_field 'content[target_age]'
-        end 
+        end
         it '編集した内容が反映されている' do
           fill_in 'content[body]', with: '編集のテスト'
           click_button '変更'
           expect(page).to have_content '編集のテスト'
-        end 
+        end
       end
-      
+
       context '投稿削除のテスト' do
         it '削除ボタンが表示されている' do
-          
-        end 
-      end 
-      
+          expect(page).to have_text '削除'
+        end
+        it '削除ボタンをクリックすると投稿が削除される' do
+          expect { click_link '削除' }.to change(user.contents, :count).by(-1)
+          expect(current_path).to eq '/contents'
+        end
+      end
+
     end
   end
 end
