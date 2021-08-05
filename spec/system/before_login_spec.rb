@@ -33,7 +33,6 @@ feature 'Sign up' do
         visit new_user_registration_path
       end
 
-      # birthdayのtestの書き方がわからない(f.date_select)
       context '表示内容の確認' do
         it 'urlが正しい' do
           expect(current_path).to eq '/users/sign_up'
@@ -44,9 +43,11 @@ feature 'Sign up' do
         it 'sexフォームがある' do
           expect(page).to have_field 'user[sex]'
         end
-        # it 'birthdayフォームがある' do
-        #   expect(page).to have_field 'user[birthday]'
-        # end
+        it 'birthdayフォームがある' do
+          expect(page).to have_field 'user[birthday(1i)]'
+          expect(page).to have_field 'user[birthday(2i)]'
+          expect(page).to have_field 'user[birthday(3i)]'
+        end
         it 'user_nameフォームがある' do
           expect(page).to have_field 'user[user_name]'
         end
@@ -79,7 +80,9 @@ feature 'Sign up' do
           fill_in 'user[name]', with: '田中'
           choose 'user[sex]', with: '男性'
           fill_in 'user[email]', with: 'hoge@example.com'
-          # select 'user[birthday]', from: '1989-01-01'
+          select '1999', from: 'user[birthday(1i)]'
+          select '1', from: 'user[birthday(2i)]'
+          select '1', from: 'user[birthday(3i)]'
           fill_in 'user[user_name]', with: 'tanaka'
           choose 'user[child_gender]', with: '男の子'
           select '1歳', from: 'user[child_age]'

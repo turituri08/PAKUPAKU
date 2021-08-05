@@ -8,7 +8,9 @@ describe 'ログイン後のテスト' do
     fill_in 'user[name]', with: '田中'
     choose 'user[sex]', with: '男性'
     fill_in 'user[email]', with: 'hoge@example.com'
-    # select 'user[birthday]', from: '1989-01-01'
+    select '1999', from: 'user[birthday(1i)]'
+    select '1', from: 'user[birthday(2i)]'
+    select '1', from: 'user[birthday(3i)]'
     fill_in 'user[user_name]', with: 'tanaka'
     choose 'user[child_gender]', with: '男の子'
     select '1歳', from: 'user[child_age]'
@@ -94,8 +96,42 @@ describe 'ログイン後のテスト' do
       expect(page).to have_link 'お気に入り', href: '/users/' + user.id.to_s + '/user_favorites'
     end
   end
+  
+  context 'ユーザー編集のテスト' do
+    it 'ユーザー編集アイコンが存在する' do
+      expect(page).to have_css "h5.fa-user-edit"
+    end 
+    it 'user_nameフォームがある' do
+      expect(page).to have_field 'user[user_name]'
+    end
+    it 'sexフォームがある' do
+      expect(page).to have_field 'user[sex]'
+    end
+    it 'birthdayフォームがある' do
+      expect(page).to have_field 'user[birthday(1i)]'
+      expect(page).to have_field 'user[birthday(2i)]'
+      expect(page).to have_field 'user[birthday(3i)]'
+    end
+    it 'プロフィール画像フォームがある' do
+      expect(page).to have_field 'user[profile_image]'
+    end 
+    it '自己紹介フォームがある' do
+      expect(page).to have_field 'user[introduction]'
+    end
+    it 'child_genderフォームがある' do
+      expect(page).to have_field 'user[child_gender]'
+    end
+    it 'child_ageフォームがある' do
+      expect(page).to have_field 'user[child_age]'
+    end
+    it 'ユーザー名変更のテスト' do
+      fill_in 'user[user_name]', with: '中田'
+      click_button '変更'
+      expect(page).to have_text '中田'
+    end 
+  end 
 
-  context '投稿成功のテスト' do
+  describe '投稿のテスト' do
     before do
       visit new_content_path
       fill_in 'content[body]', with: '本文'
