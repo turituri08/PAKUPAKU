@@ -199,23 +199,37 @@ describe 'ログイン後のテスト' do
       # end
 
       context 'コメント投稿のテスト' do
+        
+        before do
+          fill_in 'comment[comment]', with: 'コメントのテスト'
+        end 
+        
         it 'コメント入力フォームが表示されている' do
           expect(page).to have_field 'comment[comment]'
         end
         it 'コメントの投稿に成功する' do
-          fill_in 'comment[comment]', with: 'コメントのテスト'
           expect { click_button '送信' }.to change(content.comments, :count).by(1)
         end
         it '投稿したコメントが正しく表示されている' do
-          fill_in 'comment[comment]', with: 'コメントのテスト'
           click_button '送信'
           expect(page).to have_text 'コメントのテスト'
         end
         it 'コメントの件数が表示されている' do
-          fill_in 'comment[comment]', with: 'コメントのテスト'
           click_button '送信'
           expect(page).to have_text '1 件コメント'
         end
+        it 'コメント削除のアイコンが表示されている' do
+          click_button '送信'
+          trash_icon = find('i.fa-trash')
+          expect(trash_icon).to be_present
+        end 
+        # it 'コメント削除のテスト' do
+        #   click_button '送信'
+        #   comment = Comment.last
+        # 削除のアイコンをクリックする方法
+        #   trash = find('i.fa-trash')
+        #   expect { trash.click }.to change(content.comments, :count).by(0)
+        # end 
       end
 
       context '投稿編集のテスト' do
