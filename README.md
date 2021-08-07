@@ -40,6 +40,15 @@
 
 <https://docs.google.com/spreadsheets/d/1_snBJSN2HaPsouhJfrHX0hAJbAO9BiiocooFRl67RPk/edit#gid=0>
 
+## AWSインフラ構成
+
+* AWS構成図 
+<https://user-images.githubusercontent.com/71017718/128588309-f3182b98-f19b-4bae-b933-6b92cfa89217.png>
+
+* インフラ設計書  
+<https://docs.google.com/spreadsheets/d/1lznElsXAsfrKYu1_h0rJhT0ni9C7gUqNRzrCcMdJ4c0/edit#gid=0>
+
+
 ## 開発環境
 
 - OS：Linux(CentOS)
