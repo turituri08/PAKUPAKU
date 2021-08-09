@@ -43,7 +43,7 @@
 ## AWSインフラ構成
 
 * AWS構成図  
-<https://user-images.githubusercontent.com/71017718/128588309-f3182b98-f19b-4bae-b933-6b92cfa89217.png>
+<https://user-images.githubusercontent.com/71017718/128665852-180c9469-915c-46e5-9e86-f875d20a0b62.png>
 
 * インフラ設計書  
 <https://docs.google.com/spreadsheets/d/1lznElsXAsfrKYu1_h0rJhT0ni9C7gUqNRzrCcMdJ4c0/edit#gid=0>
