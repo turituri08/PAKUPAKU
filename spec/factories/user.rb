@@ -1,9 +1,9 @@
 # FactoryBot.define do
 #   factory :user do
-#     name { "田中" }
+#     name { "河合" }
 #     sex {"男性"}
-#     email {"hoge@example.com"}
-#     user_name { "tanaka" }
+#     email {"foobar@example.com"}
+#     user_name { "kawai" }
 #     child_gender {"男の子"}
 #     child_age {"1歳"}
 #     password {"password"}

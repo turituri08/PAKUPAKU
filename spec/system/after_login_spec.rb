@@ -78,7 +78,7 @@ describe 'ログイン後のテスト' do
       expect(current_path).to eq '/contents/new'
     end
   end
-
+  
   context 'ユーザー詳細ページの表示内容の確認' do
     it 'フォローしているユーザー一覧ページへのリンクが存在する' do
       expect(page).to have_link 'フォロー', href: '/users/' + user.id.to_s + '/user_followings'
@@ -261,7 +261,8 @@ describe 'ログイン後のテスト' do
           expect(current_path).to eq '/contents'
         end
       end
-
+      
     end
+    
   end
 end
