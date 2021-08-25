@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ActionView::Helpers::UrlHelper
 
 class ContentsController < ApplicationController
   before_action :authenticate_user!
@@ -12,8 +13,25 @@ class ContentsController < ApplicationController
     contents  = Content.page(params[:page]).per(15)
     @contents = contents.all.order(created_at: 'DESC')
     @comment  = Comment.new
-  end
-
+    
+    # if current_page?(contents_path)
+    #   contents  = Content.page(params[:page]).per(15)
+    #   @contents = contents.all.order(created_at: 'DESC')
+    # else
+    #   if current_page?(contents_age0_path)
+    #     contents = Content.where(target_age: '0歳').page(params[:page]).per(15)
+    #   elsif current_page?(contents_age1_path)
+    #     contents = Content.where(target_age: '1歳').page(params[:page]).per(15)
+    #   elsif current_page?(contents_age2_path)
+    #     contents = Content.where(target_age: '2歳').page(params[:page]).per(15)
+    #   elsif current_page?(contents_age3_path)
+    #     contents = Content.where(target_age: '3歳').page(params[:page]).per(15)
+    #   end
+    #   @contents = contents.order(created_at: 'DESC')
+    # end
+    # @comment  = Comment.new
+  end 
+    
   def index_age0
     contents = Content.where(target_age: '0歳').page(params[:page]).per(15)
     @contents = contents.order(created_at: 'DESC')
@@ -64,8 +82,11 @@ class ContentsController < ApplicationController
   end
 
   def destroy
-    Content.find(params[:id]).destroy
-    redirect_to contents_path, notice: '投稿を削除しました'
+    user = Content.find(params[:id]).user
+    if current_user == user
+      Content.find(params[:id]).destroy
+      redirect_to contents_path, notice: '投稿を削除しました'
+    end
   end
 
   def search
