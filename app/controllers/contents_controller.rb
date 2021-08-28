@@ -10,52 +10,15 @@ class ContentsController < ApplicationController
   end
 
   def index
-    contents  = Content.page(params[:page]).per(15)
-    @contents = contents.all.order(created_at: 'DESC')
-    @comment  = Comment.new
-    
-    # if current_page?(contents_path)
-    #   contents  = Content.page(params[:page]).per(15)
-    #   @contents = contents.all.order(created_at: 'DESC')
-    # else
-    #   if current_page?(contents_age0_path)
-    #     contents = Content.where(target_age: '0歳').page(params[:page]).per(15)
-    #   elsif current_page?(contents_age1_path)
-    #     contents = Content.where(target_age: '1歳').page(params[:page]).per(15)
-    #   elsif current_page?(contents_age2_path)
-    #     contents = Content.where(target_age: '2歳').page(params[:page]).per(15)
-    #   elsif current_page?(contents_age3_path)
-    #     contents = Content.where(target_age: '3歳').page(params[:page]).per(15)
-    #   end
-    #   @contents = contents.order(created_at: 'DESC')
-    # end
-    # @comment  = Comment.new
+    if request.query_parameters.any?
+      index_age(request.query_parameters[:age])
+    else
+      contents  = Content.page(params[:page]).per(15)
+      @contents = contents.all.order(created_at: 'DESC')
+      @comment  = Comment.new
+    end 
   end 
-    
-  def index_age0
-    contents = Content.where(target_age: '0歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
-  def index_age1
-    contents = Content.where(target_age: '1歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
-  def index_age2
-    contents = Content.where(target_age: '2歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
-  def index_age3
-    contents = Content.where(target_age: '3歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
+  
   def create
     @content = Content.new(content_params)
     @content.user_id = current_user.id
@@ -104,4 +67,10 @@ class ContentsController < ApplicationController
   def content_params
     params.require(:content).permit(:body, :target_age, content_images_images: [])
   end
+  
+  def index_age(age)
+    contents = Content.where(target_age: "#{age}歳").page(params[:page]).per(15)
+    @contents = contents.order(created_at: 'DESC')
+    @comment  = Comment.new
+  end 
 end
