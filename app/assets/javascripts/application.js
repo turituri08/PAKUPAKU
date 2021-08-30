@@ -24,7 +24,7 @@ document.addEventListener("turbolinks:load", function() {
   });
 });
 
-$(function () {
+document.addEventListener("turbolinks:load", function () {
   var pagetop = $('#scroll');
   
   pagetop.click(function () {
