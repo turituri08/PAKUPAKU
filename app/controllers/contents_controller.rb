@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+include ActionView::Helpers::UrlHelper
 
 class ContentsController < ApplicationController
   before_action :authenticate_user!
@@ -9,35 +10,15 @@ class ContentsController < ApplicationController
   end
 
   def index
-    contents  = Content.page(params[:page]).per(15)
-    @contents = contents.all.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
-  def index_age0
-    contents = Content.where(target_age: '0歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
-  def index_age1
-    contents = Content.where(target_age: '1歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
-  def index_age2
-    contents = Content.where(target_age: '2歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
-  def index_age3
-    contents = Content.where(target_age: '3歳').page(params[:page]).per(15)
-    @contents = contents.order(created_at: 'DESC')
-    @comment  = Comment.new
-  end
-
+    if request.query_parameters.any?
+      index_age(request.query_parameters[:age])
+    else
+      contents  = Content.page(params[:page]).per(15)
+      @contents = contents.all.order(created_at: 'DESC')
+      @comment  = Comment.new
+    end 
+  end 
+  
   def create
     @content = Content.new(content_params)
     @content.user_id = current_user.id
@@ -64,8 +45,11 @@ class ContentsController < ApplicationController
   end
 
   def destroy
-    Content.find(params[:id]).destroy
-    redirect_to contents_path, notice: '投稿を削除しました'
+    user = Content.find(params[:id]).user
+    if current_user == user
+      Content.find(params[:id]).destroy
+      redirect_to contents_path, notice: '投稿を削除しました'
+    end
   end
 
   def search
@@ -83,4 +67,10 @@ class ContentsController < ApplicationController
   def content_params
     params.require(:content).permit(:body, :target_age, content_images_images: [])
   end
+  
+  def index_age(age)
+    contents = Content.where(target_age: "#{age}歳").page(params[:page]).per(15)
+    @contents = contents.order(created_at: 'DESC')
+    @comment  = Comment.new
+  end 
 end
