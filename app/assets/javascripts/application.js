@@ -23,3 +23,14 @@ document.addEventListener("turbolinks:load", function() {
       dots: true, //スライドの下にドットのナビゲーションを表示
   });
 });
+
+document.addEventListener("turbolinks:load", function () {
+  var pagetop = $('#scroll');
+  
+  pagetop.click(function () {
+    $('body, html').animate({
+        scrollTop: 0
+    }, 500);
+    return false;
+  });
+});
