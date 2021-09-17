@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .room-bg{
-  background-image: url(/assets/room-bg-image-2.jpeg);
+  background-image: image-url("room-bg-image-2.jpeg");
   background-size: 100%;
   background-color: rgba(255,255,255,0.6);
   background-blend-mode: lighten;

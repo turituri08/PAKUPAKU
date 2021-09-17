@@ -36,6 +36,7 @@ class Content < ApplicationRecord
       )
       # 自分の投稿に対するいいねの場合は、通知済みとする
       notification.checked = true if notification.visitor_id == notification.visited_id
+      # バリデーションが実行された結果、エラーが無い場合trueを返し，エラーが発生した場合falseを返す
       notification.save if notification.valid?
     end
   end
