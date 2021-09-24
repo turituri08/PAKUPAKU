@@ -2,13 +2,11 @@
   <%= render "layouts/nav" %>
   <%= search_form_for @q, url: search_contents_path do |f| %>
     <div class="row mx-auto mt-3 px-0">
-      <div class="col-md-6 offset-md-3">
-        <div class="input-group">
-          <%= f.search_field :body_cont, :placeholder => "ワード検索", class: "form-control"  %>
-          <span class="input-group-btn">
-            <%= f.submit '検索', class: "btn btn-outline-secondary" %>
-          </span>
-        </div>
+      <div class="col-md-4 offset-md-4">
+          <%= f.search_field :body_cont, :placeholder => "ワード検索", class: "form-control mb-3"  %>
+          <%= f.collection_select(:category_id_eq, Category.all, :id, :ingredient, {prompt: "食材カテゴリ"}, {class: "form-control mb-3"}) %>
+          <%= f.select :target_age_eq, ['0歳', '1歳', '2歳', '3歳', '4歳以上'], { include_blank: '選択してください'}, {class: "form-control mb-2"} %>
+          <%= f.submit '検索', class: "btn btn-info form-control" %>
       </div>
     </div>
   <% end %>
