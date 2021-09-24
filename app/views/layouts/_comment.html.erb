@@ -4,7 +4,7 @@
     <div class="col-8">
       <%= f.text_field :comment, placeholder: "コメントを入力", class: "form-control" %>
     </div>
-    <%= f.hidden_field :content_id, :value => content.id %>
+      <%= f.hidden_field :content_id, :value => content.id %>
     <div class="col-2">
       <%= f.submit "送信", class: "btn btn-outline-secondary mr-2" %>
     </div>
