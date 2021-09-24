@@ -65,7 +65,7 @@ class ContentsController < ApplicationController
   end
 
   def content_params
-    params.require(:content).permit(:body, :target_age, content_images_images: [])
+    params.require(:content).permit(:body, :target_age, :category_id, content_images_images: [])
   end
   
   def index_age(age)
