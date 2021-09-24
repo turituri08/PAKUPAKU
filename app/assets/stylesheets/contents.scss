@@ -16,6 +16,23 @@
   left: 20px !important;
   z-index: 100;
  }
+ 
+ .item_image_btn{
+    display: none;
+ }
+
+	#img_field {
+	  font-size: 15px;
+	  font-style: inherit;
+	  margin: 0 auto;
+	  color: white;
+	  background-color: #17a2b8;
+	  border-radius: 5px;
+	  width: 180px;
+	  height: 40px;
+	  text-align: center;
+	  line-height: 40px;
+	}
 
 @media screen and (max-width: 490px) {
 	.card-img-top{

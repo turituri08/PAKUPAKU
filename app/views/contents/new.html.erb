@@ -15,7 +15,12 @@
         <div class="form-group row mt-5">
           <label class="col-lg-3 col-form-label text-md-right"><%= f.label :画像 %></label>
           <div class="col-lg-9">
-            <%= f.attachment_field :content_images_images, multiple: true %>
+            <div class="item_image_btn">
+              <%= f.attachment_field :content_images_images, multiple: true, id: "file" %>
+            </div>
+            <div id="img_field" onClick="$('#file').click()" >
+              <p>画像選択</p>
+            </div>
           </div>
         </div>
 
