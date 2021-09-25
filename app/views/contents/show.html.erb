@@ -36,10 +36,10 @@
     <div class="card-body pt-0">
       <div class="card-text border-bottom pt-3"><%= raw Rinku.auto_link(simple_format(@content.body)) %></div>
       <div class="row pt-2">
-        <div class="col-4">
+        <div class="col-6">
           <div class="text-black-50 small"><%= date_format(@content.created_at) %></div>
         </div>
-        <div class="col-8">
+        <div class="col-6">
           <div class="row">
             <div id='like-button_<%= @content.id %>' class="col-6 text-right">
             <%= render "layouts/like", content: @content %>
