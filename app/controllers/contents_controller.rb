@@ -14,6 +14,7 @@ class ContentsController < ApplicationController
       index_age(request.query_parameters[:age])
     else
       contents  = Content.page(params[:page]).per(15)
+      @target_age = ['0歳', '1歳', '2歳', '3歳', '4歳以上']
       @contents = contents.all.order(created_at: 'DESC')
       @comment  = Comment.new
     end 
