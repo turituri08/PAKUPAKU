@@ -11,11 +11,15 @@
     <div class="card-body pt-0">
       <%= form_with model: @content, local:true do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
-
         <div class="form-group row mt-5">
           <label class="col-lg-3 col-form-label text-md-right"><%= f.label :画像 %></label>
           <div class="col-lg-9">
-            <%= f.attachment_field :content_images_images, multiple: true %>
+            <div class="item_image_btn">
+              <%= f.attachment_field :content_images_images, multiple: true, id: "file" %>
+            </div>
+            <div id="img_field" onClick="$('#file').click()" >
+              <p>画像選択</p>
+            </div>
           </div>
         </div>
 
@@ -23,6 +27,14 @@
           <label class="col-lg-3 col-form-label text-md-right"><%= f.label :キャプション %></label>
           <div class="col-lg-9">
             <%= f.text_area :body, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label text-md-right"><%= f.label :食材カテゴリ %></label>
+          <div class="col-lg-9 pt-2">
+            <%= f.collection_select(:category_id, Category.all, :id, :ingredient, {prompt: "選択してください"}, {class: "form-control"}) %>
+            <small class="form-text">※ 使用されている食材のカテゴリを選択してください</small>
           </div>
         </div>
 

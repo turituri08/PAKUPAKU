@@ -2,7 +2,7 @@
   <div class="card col-lg-6 offset-lg-3 mx-auto mt-3 px-0">
     <div class="card-header">
       <div class="row">
-        <div class="col-2">
+        <div class="col-2 pl-1">
           <%= link_to user_path(content.user), class: "deco-none" do %>
             <%= attachment_image_tag content.user, :profile_image, :fill, 40, 40, fallback: "no_image.png", class:"rounded-circle"; %>
           <% end %>
