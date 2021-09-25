@@ -3,7 +3,7 @@
   <%= search_form_for @q, url: search_contents_path do |f| %>
     <div class="row mx-auto mt-3 px-0">
       <div class="col-md-4 offset-md-4">
-        <div class="text-center mb-2 btn btn-outline-secondary form-control" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">離乳食の投稿を検索する<i class="fas fa-search pl-3"></i></div>
+        <div class="mb-2 btn btn-outline-secondary form-control" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">離乳食の投稿を検索する<i class="fas fa-search pl-3"></i></div>
       </div>
       <div class="collapse col-md-6 offset-md-3" id="collapseExample">
         <%= f.search_field :body_cont, :placeholder => "ワード検索", class: "form-control mb-3"  %>
