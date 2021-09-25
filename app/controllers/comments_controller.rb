@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     Comment.find_by(id: params[:id], content_id: params[:content_id]).destroy
     redirect_to content_path(params[:content_id])
   end

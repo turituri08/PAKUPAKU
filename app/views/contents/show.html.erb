@@ -77,7 +77,7 @@
               <div class="col-1 text-right">
                 <% if comment.user == current_user %>
                 　<!--remote: trueは削除-->
-                  <%= link_to content_comments_path(comment.content_id, comment), method: :delete, class: "comment_destroy" do %>
+                  <%= link_to content_destroy_comments_path(@content, comment), method: :delete, class: "comment_destroy" do %>
                     <i class="fas fa-trash" style="color: black;"></i>
                   <% end %>
                 <% end %>
@@ -111,7 +111,7 @@
                 <div class="col-1 text-right">
                   <% if comment.user == current_user %>
                     <!--remote: trueは削除-->
-                    <%= link_to content_comments_path(comment.content_id, comment), method: :delete, class: "comment_destroy" do %>
+                    <%= link_to content_destroy_comments_path(@content, comment), method: :delete, class: "comment_destroy" do %>
                       <i class="fas fa-trash" style="color: black;"></i>
                     <% end %>
                   <% end %>
