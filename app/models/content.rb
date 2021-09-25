@@ -6,6 +6,7 @@ class Content < ApplicationRecord
   validates  :target_age, presence: true
 
   belongs_to :user
+  belongs_to :category
   has_many   :content_images, dependent: :destroy
   accepts_attachments_for :content_images, attachment: :image
   has_many   :comments,       dependent: :destroy
