@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :contents,   only:[:new, :create, :index, :show, :update, :destroy] do
     resource :likes,     only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
-    resource :comments,  only:[:create, :destroy]
+    resource :comments,  only:[:create]
+    delete '/comments/:id' => 'comments#destroy', as: 'destroy_comments'
     collection do
       get 'search'
     end

@@ -39,7 +39,12 @@
           <div class="form-group row pt-4">
             <label class="col-md-4 col-form-label text-md-right"><%= f.label :プロフィール画像 %></label>
             <div class="col-md-6">
-              <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+              <div class="user_edit_image_btn">
+                <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", id: "file" %>
+              </div>
+              <div id="user_img_field" onClick="$('#file').click()" >
+                <p>画像選択</p>
+              </div>
             </div>
           </div>
 
