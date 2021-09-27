@@ -133,10 +133,11 @@ describe 'ログイン後のテスト' do
 
   describe '投稿のテスト' do
     before do
+      Category.create(id: 1, ingredient: '野菜')
       visit new_content_path
       fill_in 'content[body]', with: '本文'
       attach_file 'content[content_images_images][]', 'app/assets/images/logo.jpg'
-      # select "3", from: 'content[category_id]'
+      select '野菜', from: 'content[category_id]'
       select '1歳', from: 'content[target_age]'
     end
 
@@ -144,7 +145,6 @@ describe 'ログイン後のテスト' do
       expect(current_path).to eq '/contents/new'
     end
     it '投稿が正しく保存される' do
-      binding.pry
       expect { click_button '投稿' }.to change(user.contents, :count).by(1)
     end
     it 'リダイレクト先のurlが正しい' do
