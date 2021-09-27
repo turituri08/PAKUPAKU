@@ -71,24 +71,9 @@
             </p>
           </div>
 
-          <div class="col-2 pr-2 pl-0">
-          <% unless @user.id == current_user.id %>
-            <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
-              <% if @isRoom == true %>
-                <a href="/rooms/<%= @roomId %>" class="deco-none"><h5 class="far fa-paper-plane pt-2"></h5></a>
-              <% else %>
-                <%= form_for @room do |f| %>
-                  <%= fields_for @entry do |e| %>
-                    <%= e.hidden_field :user_id, value: @user.id %>
-                  <% end %>
-                  <%= button_tag :type => "submit", :class =>"btn btn-default" do %>
-                    <h5 class="far fa-paper-plane"></h5>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
+          <div class="col-2 pr-2 pl-0" id="room-icon_<%= @user.id %>">
+            <%= render "layouts/room", {user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry} %>
+          </div>
 
       </div>
       <div class="row">
