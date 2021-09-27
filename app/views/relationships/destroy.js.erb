@@ -1,3 +1,4 @@
 $("#follow-button_<%= @user.id %>").html("<%= j(render 'layouts/follow', user: @user ) %>");
+<!--$("#room-icon_<%#= @user.id %>").html("<%#= j(render 'layouts/room', {user: @user, isRoom: @isRoom, roomId: @roomId}) %>");-->
 $("#follower-count_<%= @user.id %>").html('<%= @user.followers.count %>');
 $("#following-count_<%= current_user.id %>").html('<%= current_user.followings.count %>');
